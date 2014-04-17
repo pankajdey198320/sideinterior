@@ -1,0 +1,24 @@
+﻿@model SideAdmin.Models.ViewModel.UserMessageInfoViewModel
+
+@{
+    ViewBag.Title = "Message";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.MessageType == SideAdmin.Models.ViewModel.UserMessageInfoViewModel.InfoType.success)
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+else if (Model.MessageType == SideAdmin.Models.ViewModel.UserMessageInfoViewModel.InfoType.Error || Model.MessageType == SideAdmin.Models.ViewModel.UserMessageInfoViewModel.InfoType.failure)
+{
+    <div class="alert alert-danger">@ViewBag.Message</div>
+}
+else
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+
+   
+
+

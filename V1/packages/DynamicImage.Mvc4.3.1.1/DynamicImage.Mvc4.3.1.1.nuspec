@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DynamicImage.Mvc4</id>
+    <version>3.1.1</version>
+    <title>DynamicImage.Mvc4</title>
+    <authors>Sound in Theory Ltd</authors>
+    <owners>Sound in Theory Ltd</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/tgjones/dynamic-image</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extensions for DynamicImage providing integration with ASP.NET MVC 4</description>
+    <tags>.net40 ASP.NET image manipulation filters resize crop MVC MVC4</tags>
+    <dependencies>
+      <dependency id="DynamicImage" version="3.1.1.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DynamicImage</id>
+    <version>3.1.1</version>
+    <title>DynamicImage</title>
+    <authors>Sound in Theory Ltd</authors>
+    <owners>Sound in Theory Ltd</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/tgjones/dynamic-image</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>DynamicImage is a high-performance image manipulation library for ASP.NET.</description>
+    <tags>.net40 ASP.NET image manipulation filters resize crop</tags>
+    <dependencies>
+      <dependency id="WebActivatorEx" version="2.0.2" />
+    </dependencies>
+  </metadata>
+</package>

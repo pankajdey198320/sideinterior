@@ -1,34 +1,36 @@
-﻿@{
+﻿@model IEnumerable<V1.Models.ViewModel.CarouselViewModel>
+
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Side Interior</title>
-      @*<link href="http://inthe7heaven.com/impressive/separate/css/style.css" rel="stylesheet" />
-    
-      <link href="http://inthe7heaven.com/impressive/separate/css/carousel.css" rel="stylesheet">
-      <link href="http://inthe7heaven.com/impressive/separate/css/carousel-style.css" rel="stylesheet">*@
-      
+    @*<link href="http://inthe7heaven.com/impressive/separate/css/style.css" rel="stylesheet" />
 
-      <link href="~/Content/style.css" rel="stylesheet">
-      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-      <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
-      <link href="http://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
-      <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-      <link href="http://fonts.googleapis.com/css?family=Engagement" rel="stylesheet" type="text/css">
-      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600" rel="stylesheet" type="text/css">
-      <link href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-      
-  </head>
+        <link href="http://inthe7heaven.com/impressive/separate/css/carousel.css" rel="stylesheet">
+        <link href="http://inthe7heaven.com/impressive/separate/css/carousel-style.css" rel="stylesheet">*@
+
+
+    <link href="~/Content/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Engagement" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+</head>
 
 <body class="csstransforms csstransforms3d csstransitions js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
 
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse" role="navigation" style=" margin-bottom: 0px">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -64,44 +66,8 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img alt="First slide" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/401023_293919477331147_1141379364_n.jpg">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Example headline.</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img alt="Second slide" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/401023_293919477331147_1141379364_n.jpg">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img alt="Third slide" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/416790_293919577331137_1141897026_n.jpg">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>One more for good measure.</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        </div>
-    </div>
+    @{ Html.RenderPartial("_Carousel", Model);
+    }
     <div class="row-fluid">
         <div class="container-fluid UnderSlide">
             <div class="container">
