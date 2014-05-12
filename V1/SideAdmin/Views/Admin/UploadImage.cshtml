@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "UploadImage";
+﻿@model V1.Models.ViewModel.CarouselViewModel
+@{
+    ViewBag.Title = "ChangePassword";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -7,13 +8,60 @@
 
 @using (Html.BeginForm("UploadImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="col-lg-6">
-        <div class="input-group">
-            <input type="file" name="file" id="file" class="form-control" />
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Upload!</button>
-            </span>
+    <div class="alert alert-info">
+
+        Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="file" name="file" id="file" class="form-control" multiple />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Upload!</button>
+                </span>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon fix-Label-width">Caption</span>
+                @Html.TextBoxFor(model => model.CarouselCaption.Text, new { @class = "form-control", placeholder = "Caption", required = "" })
+
+            </div>
         </div>
     </div>
 
+}
+
+@{
+    Html.RenderAction("ViewCarouselImageList");
+
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Upload").click(function () {
+                var formData = new FormData();
+                var totalFiles = document.getElementById("fileUploader").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("fileUploader").files[i];
+
+                    formData.append("FileUpload", file);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/SideAdmin/Admin/UploadImage1',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        alert('succes!!');
+                    },
+                    error: function (error) {
+                        alert("errror");
+                    }
+                });
+            });
+        });
+
+    </script>
 }

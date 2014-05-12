@@ -1,0 +1,16 @@
+﻿@model V1.Models.ViewModel.CarouselViewModel
+
+@Html.HiddenFor(model => model.Id)
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="file" name="file[]" id="fileUploader" class="form-control" />
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" id="Upload">Upload!</button>
+            </span>
+        </div>
+
+    </div>
+</div>
+
+

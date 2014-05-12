@@ -1,52 +1,43 @@
 ﻿@model V1.Models.ViewModel.LoginViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-    
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="container">
         <fieldset>
-            <legend>LoginViewModel</legend>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.UserName)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.UserName)
+            <legend>User login</legend>
+
+            <div class="input-group">
+                <span class="input-group-addon fix-Label-width">User Name</span>
+
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "User Name", required = "" })
                 @Html.ValidationMessageFor(model => model.UserName)
+
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Password)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Password)
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon fix-Label-width">Password</span>
+
+
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password", required = "" })
                 @Html.ValidationMessageFor(model => model.Password)
             </div>
-    
-            <p>
-                <input type="submit" value="Create" />
-            </p>
+            <br />
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+                &nbsp;
+            
+                <a href="@Url.Action("Create","Login")" class="btn btn-default">Sign-up!</a>
+            </div>
+
         </fieldset>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+}
+
+

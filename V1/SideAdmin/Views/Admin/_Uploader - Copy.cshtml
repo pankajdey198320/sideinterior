@@ -1,0 +1,17 @@
+﻿@model V1.Models.ViewModel.CarouselViewModel
+@using (Html.BeginForm("UploadImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model =>model.Id)
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="file" name="file[]" id="file" class="form-control" multiple />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Upload!</button>
+                </span>
+            </div>
+           
+        </div>
+    </div>
+
+}

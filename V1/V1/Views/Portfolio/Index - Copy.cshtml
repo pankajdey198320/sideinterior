@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SubLayout.cshtml";
+}
+
+<div class="row-fluid PortfolioContent">
+    <div class="tab-content">
+        @*<div class="tab-pane fade" id="Retail">
+            <div class="row-fluid">
+                <div class="SliderWrapper">
+                    <div class="iosSlider" style="position: relative; top: 0px; left: 0px; overflow: hidden; z-index: 1; -webkit-perspective: 1000px; -webkit-backface-visibility: hidden; width: 1350px; height: 527px;">
+                        <div class="slider" style="position: relative; cursor: -webkit-grab; -webkit-perspective: 0; -webkit-backface-visibility: hidden; -webkit-transform: matrix(1, 0, 0, 1, -1013, 0); width: 5065px;">
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 168, 0); width: 1013px;">
+                                <img src="images/26.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Curabitur ultricies pulvinar</div>
+                                    <div class="TitleText">Curabitur ultricies pulvinar lorem, non ultrices ipsum placerat id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi consectetur arcu vel magna iaculis pulvinar. Vivamus in ipsum ligula. Aliquam non risus neque. In ullamcorper congue augue sed mattis. Nullam sit amet dolor mi. Duis at turpis quam, nec tincidunt lacus. Sed ac lacus lectus, vel accumsan tortor. Donec venenatis urna quis leo vestibulum eu convallis augue vehicula.</div>
+                                </div>
+                            </div>
+                            <div class="item current" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 6246, 0); width: 1013px;">
+                                <img src="images/27.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Proin augue ligula</div>
+                                    <div class="TitleText">Proin augue ligula, commodo nec semper sed, volutpat vehicula urna. Sed est risus, gravida ac aliquet a, ultrices at tellus. Ut vel ante at orci tincidunt sodales. Nulla congue consequat accumsan. Integer molestie, dui in egestas vulputate, leo purus vehicula risus, id congue odio dui eget sem. Fusce quis dui eros, sit amet placerat nisi. Nunc commodo massa et ipsum aliquet blandit. Cras posuere pulvinar eros, ut semper eros vulputate sit amet.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 7259, 0); width: 1013px;">
+                                <img src="images/28.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Cras id nunc lacus</div>
+                                    <div class="TitleText">Cras id nunc lacus. In hac habitasse platea dictumst. Mauris faucibus sodales venenatis. Praesent ultricies ante et nisi laoreet porttitor. Ut bibendum scelerisque tincidunt. Integer suscipit mi ut enim lobortis consectetur non et lacus. Donec a ligula velit. Sed ac ipsum ornare ligula condimentum sollicitudin. Sed in placerat urna. Integer tristique urna at enim adipiscing ut tincidunt mi porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dolor ipsum, molestie eget pellentesque quis, hendrerit in lorem.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 8272, 0); width: 1013px;">
+                                <img src="images/29.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Sed malesuada faucibus tortor</div>
+                                    <div class="TitleText">Sed malesuada faucibus tortor non consectetur. Maecenas sed odio massa, commodo dictum libero. Morbi congue interdum augue ac mollis. Maecenas id purus odio, vel porta sapien. Aenean fermentum arcu sit amet felis consequat aliquam. Nulla facilisi. Maecenas in massa sit amet lorem semper interdum at vitae sem. Maecenas nec dui vitae turpis fermentum porta. Cras feugiat adipiscing eros, sit amet cursus erat vestibulum sed. Pellentesque gravida sem vitae orci imperdiet consequat.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 9285, 0); width: 1013px;">
+                                <img src="images/30.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Quisque erat augue</div>
+                                    <div class="TitleText">Quisque erat augue, faucibus congue imperdiet at, eleifend quis ipsum. Vestibulum interdum tempus odio, sit amet rutrum erat tristique eget. Nulla porta libero ut nulla commodo pharetra. Pellentesque sit amet sodales nunc. Praesent posuere, justo ac tempor imperdiet, tellus nisi cursus quam, pulvinar accumsan dolor est sed nisi. Morbi pulvinar ligula sit amet arcu vestibulum vitae dictum risus placerat. Vivamus porta tincidunt dui, eu placerat neque fringilla eu.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="SideBarLeft"></div>
+                        <div class="SideBarRight"></div>
+                        <div class="prevContainer">
+                            <div class="prev" style="cursor: pointer;"></div>
+                        </div>
+                        <div class="nextContainer">
+                            <div class="next" style="cursor: pointer;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid descr">
+                    <div class="container-fluid PortfolioUnderSlide">
+                        <div class="container">
+                            <div class="span12">
+                                <div class="title">Proin augue ligula</div>
+                                <div class="span4 ShareInfo pull-right">
+                                    <div class="wrap">
+                                        <div class="ShareWrap">
+                                            <a class="share" data-toggle="popover" data-placement="left" title="" data-original-title="">Share</a>
+                                            <div class="share-popover hidden">
+                                                <ul>
+                                                    <li><a href="#" class="tweet"><span></span></a></li>
+                                                    <li><a href="#" class="face"><span></span></a></li>
+                                                    <li><a href="#" class="pint"><span></span></a></li>
+                                                    <li><a href="#" class="goog"><span></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="TitleText">Proin augue ligula, commodo nec semper sed, volutpat vehicula urna. Sed est risus, gravida ac aliquet a, ultrices at tellus. Ut vel ante at orci tincidunt sodales. Nulla congue consequat accumsan. Integer molestie, dui in egestas vulputate, leo purus vehicula risus, id congue odio dui eget sem. Fusce quis dui eros, sit amet placerat nisi. Nunc commodo massa et ipsum aliquet blandit. Cras posuere pulvinar eros, ut semper eros vulputate sit amet.</div>
+                                <div class="span4 ShareInfo pull-left phone">
+                                    <div class="wrap">
+                                        <div class="ShareWrap">
+                                            <a class="share" data-toggle="popover" data-placement="right" title="" data-original-title="">Share</a>
+                                            <div class="share-popover hidden">
+                                                <ul>
+                                                    <li><a href="#" class="tweet"><span></span></a></li>
+                                                    <li><a href="#" class="face"><span></span></a></li>
+                                                    <li><a href="#" class="pint"><span></span></a></li>
+                                                    <li><a href="#" class="goog"><span></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <div class="tab-pane fade active in" id="Hotels">
+            <div class="row-fluid">
+                <div class="SliderWrapper">
+                    <div class="iosSlider" style="position: relative; top: 0px; left: 0px; overflow: hidden; z-index: 1; -webkit-perspective: 1000px; -webkit-backface-visibility: hidden; width: 1350px; height: 527px;">
+                        <div class="slider" style="position: relative; cursor: -webkit-grab; -webkit-perspective: 0; -webkit-backface-visibility: hidden; -webkit-transform: matrix(1, 0, 0, 1, -10130, 0); width: 5065px;">
+                            <div class="item current" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 10298, 0); width: 1013px;">
+                                <img src="http://inthe7heaven.com/impressive/separate/images/21.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Fusce mattis dolor a magna</div>
+                                    <div class="TitleText">Fusce mattis dolor a magna tincidunt et scelerisque arcu pretium. Pellentesque sed eros ipsum. Nam tempor odio non quam laoreet vulputate id a libero. Mauris mattis ante eu est blandit a egestas justo congue. Mauris laoreet nisi vel leo mollis convallis. In a lorem sit amet sapien commodo volutpat eget eget lacus. Suspendisse lobortis fringilla lectus, ut suscipit lacus fermentum nec. Ut nisi dolor, dapibus a adipiscing sit amet, ornare non tortor. Maecenas aliquet odio nec risus pretium in molestie sapien dapibus.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 11311, 0); width: 1013px;">
+                                <img src="http://inthe7heaven.com/impressive/separate/images/22.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Vestibulum pellentesque auctor odio</div>
+                                    <div class="TitleText">Vestibulum pellentesque auctor odio, non tristique nunc imperdiet a. Aenean accumsan sem et magna feugiat accumsan. Morbi imperdiet molestie rhoncus. Cras tempus ullamcorper suscipit. Donec rutrum vulputate volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas facilisis posuere. Nam est lectus, facilisis in congue id, porta ut urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 7259, 0); width: 1013px;">
+                                <img src="http://inthe7heaven.com/impressive/separate/images/23.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Donec sit amet urna mauris</div>
+                                    <div class="TitleText">Donec sit amet urna mauris. In hac habitasse platea dictumst. Nam eros turpis, vestibulum id rutrum sit amet, porta et sapien. Suspendisse consectetur, eros suscipit cursus lacinia, nulla est tincidunt erat, ac facilisis felis purus vel velit. Sed quis ipsum adipiscing nibh vehicula volutpat vitae id nisl. Sed ornare metus ac odio feugiat mollis tempus erat elementum. Sed adipiscing cursus gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 8272, 0); width: 1013px;">
+                                <img src="http://inthe7heaven.com/impressive/separate/images/24.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Sed tempus, eros ut dapibus pharetra</div>
+                                    <div class="TitleText">Sed tempus, eros ut dapibus pharetra, ligula nunc scelerisque dui, ac tincidunt dui nunc ac lorem. Ut id pretium enim. Fusce nunc metus, ornare ut fermentum non, aliquam ut risus. Integer justo sem, laoreet sit amet tempus a, fermentum a lacus. Donec cursus, nunc ut mattis lacinia, leo magna adipiscing purus, sit amet adipiscing eros odio sed arcu. Phasellus mollis dapibus arcu sit amet venenatis. Donec rhoncus ante in mi vestibulum non pulvinar purus suscipit.</div>
+                                </div>
+                            </div>
+                            <div class="item" style="-webkit-backface-visibility: hidden; overflow: hidden; position: absolute; -webkit-transform: matrix(1, 0, 0, 1, 9285, 0); width: 1013px;">
+                                <img src="http://inthe7heaven.com/impressive/separate/images/25.jpg" alt="">
+                                <div class="span12 descriptionImg">
+                                    <div class="title">Quisque orci magna, molestie</div>
+                                    <div class="TitleText">Quisque orci magna, molestie in pellentesque ac, pretium sed elit. In ipsum neque, facilisis sollicitudin varius vel, pretium et massa. Nunc eleifend diam eu mi venenatis porttitor. Nulla consectetur placerat laoreet. Nunc augue nunc, eleifend ut hendrerit non, semper ac lectus. Fusce diam libero, lacinia id consequat quis, iaculis lobortis urna. Vestibulum id lorem nec mi vehicula tristique in ut magna. Etiam sed lectus enim, id suscipit felis. Proin ut turpis purus, in ornare dolor.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="SideBarLeft"></div>
+                        <div class="SideBarRight"></div>
+                        <div class="prevContainer">
+                            <div class="prev" style="cursor: pointer;"></div>
+                        </div>
+                        <div class="nextContainer">
+                            <div class="next" style="cursor: pointer;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid descr">
+                    <div class="container-fluid PortfolioUnderSlide">
+                        <div class="container">
+                            <div class="span12">
+                                <div class="title">Proin augue ligula</div>
+                                <div class="span4 ShareInfo pull-right">
+                                    <div class="wrap">
+                                        <div class="ShareWrap">
+                                            <a class="share" data-toggle="popover" data-placement="left" title="" data-original-title="">Share</a><div class="popover fade left in" style="top: 0px; left: 164px; display: block;">
+                                                <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content">
+                                                    <ul>
+                                                        <li><a href="#" class="tweet"><span></span></a></li>
+                                                        <li><a href="#" class="face"><span></span></a></li>
+                                                        <li><a href="#" class="pint"><span></span></a></li>
+                                                        <li><a href="#" class="goog"><span></span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="share-popover hidden">
+                                                <ul>
+                                                    <li><a href="#" class="tweet"><span></span></a></li>
+                                                    <li><a href="#" class="face"><span></span></a></li>
+                                                    <li><a href="#" class="pint"><span></span></a></li>
+                                                    <li><a href="#" class="goog"><span></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="TitleText">Proin augue ligula, commodo nec semper sed, volutpat vehicula urna. Sed est risus, gravida ac aliquet a, ultrices at tellus. Ut vel ante at orci tincidunt sodales. Nulla congue consequat accumsan. Integer molestie, dui in egestas vulputate, leo purus vehicula risus, id congue odio dui eget sem. Fusce quis dui eros, sit amet placerat nisi. Nunc commodo massa et ipsum aliquet blandit. Cras posuere pulvinar eros, ut semper eros vulputate sit amet.</div>
+                                <div class="span4 ShareInfo pull-left phone">
+                                    <div class="wrap">
+                                        <div class="ShareWrap">
+                                            <a class="share" data-toggle="popover" data-placement="right" title="" data-original-title="">Share</a>
+                                            <div class="share-popover hidden">
+                                                <ul>
+                                                    <li><a href="#" class="tweet"><span></span></a></li>
+                                                    <li><a href="#" class="face"><span></span></a></li>
+                                                    <li><a href="#" class="pint"><span></span></a></li>
+                                                    <li><a href="#" class="goog"><span></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

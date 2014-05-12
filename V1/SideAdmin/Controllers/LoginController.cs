@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using SideInfrastructure.Model.Edmx;
 using SideAdmin.Models.ViewModel;
 using V1.Models.ViewModel;
+using SideAdmin.Utility;
 
 namespace V1.Controllers
 {
@@ -27,7 +28,10 @@ namespace V1.Controllers
         public ActionResult Login(LoginViewModel model)
         {
             if (!this.Authenticate(model.UserName, this.HashPassword(model.Password)))
-            { return View(); }
+            {
+
+                return View();
+            }
             return RedirectToAction("Index", "Admin");
         }
 
@@ -43,20 +47,23 @@ namespace V1.Controllers
             if (ModelState.IsValid)
             {
                 var personId = this.AddPerson(model);
-                if (personId == -1) {
+                if (personId == -1)
+                {
                     return this.ShowMessage("Existing email address", UserMessageInfoViewModel.InfoType.Error);
                 }
                 string activationLink = this.GetActivationLink(model.Email, personId);
                 this.SendMail("Admin@side-interior.com", model.Email, "Activation", activationLink);
             }
-            return   this.ShowMessage("Successfully added, one activation mail has been send to you, please follow to proceed", UserMessageInfoViewModel.InfoType.success);;
+            return this.ShowMessage("Successfully added, one activation mail has been send to you, please follow to proceed", UserMessageInfoViewModel.InfoType.success); ;
         }
 
-        private ActionResult ShowMessage(string message,UserMessageInfoViewModel.InfoType type) {
+        private ActionResult ShowMessage(string message, UserMessageInfoViewModel.InfoType type)
+        {
             ViewBag.Message = message;
-            return View("Message", new UserMessageInfoViewModel() { 
-                 Message= message,
-                 MessageType = type
+            return View("Message", new UserMessageInfoViewModel()
+            {
+                Message = message,
+                MessageType = type
             });
         }
 
@@ -93,7 +100,7 @@ namespace V1.Controllers
             bool returnVal = false;
             using (SIDEContxts context = new SIDEContxts())
             {
-                var user = (from v in context.Users where v.UserId == userID  && v.IsActive == false select v).FirstOrDefault();
+                var user = (from v in context.Users where v.UserId == userID && v.IsActive == false select v).FirstOrDefault();
                 if (user != null)
                 {
                     user.Password = this.HashPassword(password);
@@ -155,6 +162,22 @@ namespace V1.Controllers
                 if (context.Users.Any(p => p.UserName == userName && p.Password == password && p.IsActive == true))
                 {
                     isAuthenticate = true;
+                    var user = (from v in context.Users
+                               join p in context.People
+                               on v.PersonId equals p.PersonId
+
+                               where v.UserName == userName && v.Password == password
+                               select new UserViewModel()
+                               {
+                                   FirstName = p.FirstName,
+                                   LastName = p.LastName,
+                                   Email = p.Email
+
+                               }).FirstOrDefault();
+                    if (user != null)
+                    {
+                        HttpContext.Session[LoginConstants.LoginSession] = user;
+                    }
                 }
             }
 
@@ -166,8 +189,10 @@ namespace V1.Controllers
             long id = 0;
             using (SIDEContxts context = new SIDEContxts())
             {
-                if ((from v in context.People join u in context.Users on v.PersonId equals u.PersonId
-                     where v.Email == model.Email select v.PersonId).Any())
+                if ((from v in context.People
+                     join u in context.Users on v.PersonId equals u.PersonId
+                     where v.Email == model.Email
+                     select v.PersonId).Any())
                 {
                     return -1;
                 }
@@ -177,7 +202,7 @@ namespace V1.Controllers
                     MiddleName = model.MiddleName,
                     LastName = model.LastName,
                     DOB = model.DateOfBirth,
-                    Sex = model.Gender ? "M" : "F",
+                    Sex = model.Gender,
                     CreationDate = DateTime.Now,
                     Email = model.Email
                 };

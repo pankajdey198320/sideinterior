@@ -1,0 +1,35 @@
+﻿@model IEnumerable<V1.Models.ViewModel.CarouselViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+    <div class="col-lg-6">
+        <table class="table">
+            <tr>
+                <th>Caption</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageSrc)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.CarouselCaption.Text)</td>
+            <td>
+                <img src='@Html.DisplayFor(modelItem => item.ImageSrc)' class="img-thumbnail" alt="Responsive image">
+                @Html.Partial("_Uploader",item)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Delete", "DeleteImage", new {  id=item.Id })
+            </td>
+        </tr>
+}
+
+        </table>
+    </div>
+</div>

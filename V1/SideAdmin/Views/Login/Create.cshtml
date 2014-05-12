@@ -39,11 +39,23 @@
         </div>
 
         <div class="input-group">
-            <span class="input-group-addon fix-Label-width">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="Gender" id="optionsRadios1" value="M" checked>
+                   Male
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="Gender" id="optionsRadios2" value="F">
+                    Female
+                </label>
+            </div>
+            @*<span class="input-group-addon fix-Label-width">
                 @Html.EditorFor(model => model.Gender)
                 Gender
             </span>
-            @Html.ValidationMessageFor(model => model.Gender)
+            @Html.ValidationMessageFor(model => model.Gender)*@
         </div>
 
         <div class="input-group">

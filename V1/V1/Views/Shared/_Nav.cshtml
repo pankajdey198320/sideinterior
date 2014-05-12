@@ -1,0 +1,30 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style=" margin-bottom: 0px">
+    <div class="navbar-inner" style="height:69px">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="brand">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    S
+                    <span class="red">i</span>
+                    de
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    @{
+                        var ctrl = Url.RequestContext.RouteData.Values["Controller"];
+                        var action = Url.RequestContext.RouteData.Values["Action"];
+                        Html.RenderAction("GetNavs", "Home", new { controller = ctrl, action = action });
+                    }
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </div>
+</nav>

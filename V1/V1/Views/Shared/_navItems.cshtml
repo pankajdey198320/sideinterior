@@ -1,0 +1,7 @@
+﻿@model IEnumerable<SideInfrastructure.Model.ViewModel.NavigationViewModel>
+@foreach (var item in Model)
+{
+    var subs = item.isSubMenu ? "data-toggle=tab" : string.Empty;
+    var isAct = item.IsActive == true ? "class:'active'" : string.Empty;
+    <li @isAct><a href="@item.Url" @subs data-option-value="@item.DataOptionValue" >@item.DisplayName</a></li>
+}

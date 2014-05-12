@@ -6326,7 +6326,7 @@ a {
     margin: -35px 0 0 -35px;
     width: 70px;
     height: 70px;
-    background: url(../images/bg_arrow.png);
+    background: url(http://inthe7heaven.com/impressive/separate/images/bg_arrow.png);
     background-position: 0 0;
     z-index: 11;
 }
@@ -6353,7 +6353,7 @@ a {
         right: 30px;
         width: 70px;
         height: 70px;
-        background: url(../images/bg_arrow.png);
+        background: url(http://inthe7heaven.com/impressive/separate/images/bg_arrow.png);
         background-position: 0 -140px;
     }
 
@@ -6503,3 +6503,15 @@ form.bs-docs-example {
 .pln {
     color: #48484c;
 }
+
+
+.subnav-fixed {
+    height: 146px;
+    width: 120px;    
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
+    
+  }

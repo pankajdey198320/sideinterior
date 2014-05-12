@@ -1,0 +1,14 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Navigation*@
+@{
+    Html.RenderPartial("_SubNav");
+}
+@RenderBody()
+
+@section scriptsMain{
+@RenderSection("scripts", required: false)
+}

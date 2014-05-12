@@ -7,6 +7,8 @@ namespace V1.Models.ViewModel
 {
     public class CarouselViewModel
     {
+        public long Id { get; set; }
+
         public string  ImageSrc { get; set; }
 
         public Caption CarouselCaption { get; set; }
