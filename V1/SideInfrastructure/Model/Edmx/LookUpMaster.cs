@@ -12,15 +12,20 @@ namespace SideInfrastructure.Model.Edmx
     using System;
     using System.Collections.Generic;
     
-    public partial class SectionType
+    public partial class LookUpMaster
     {
-        public SectionType()
+        public LookUpMaster()
         {
             this.Sections = new HashSet<Section>();
         }
     
-        public long SectionTypeId { get; set; }
-        public string SectionTypeName { get; set; }
+        public long LookupId { get; set; }
+        public string Name { get; set; }
+        public string DataValue { get; set; }
+        public string Description { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public int Status { get; set; }
+        public Nullable<long> ParentId { get; set; }
     
         public virtual ICollection<Section> Sections { get; set; }
     }

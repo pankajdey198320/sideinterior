@@ -12,16 +12,10 @@ namespace SideInfrastructure.Model.Edmx
     using System;
     using System.Collections.Generic;
     
-    public partial class Section
+    public partial class SectionAttribute
     {
+        public long SectionAttributeID { get; set; }
         public long SectionId { get; set; }
-        public string SectionName { get; set; }
-        public string SectionDescription { get; set; }
-        public Nullable<long> UserId { get; set; }
-        public System.DateTime CreationDate { get; set; }
-        public Nullable<long> SectionTypeId { get; set; }
-    
-        public virtual User User { get; set; }
-        public virtual LookUpMaster LookUpMaster { get; set; }
+        public long AttributeId { get; set; }
     }
 }

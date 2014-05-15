@@ -30,7 +30,8 @@ namespace SideInfrastructure.Model.Edmx
         public DbSet<Person> People { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<SectionDocument> SectionDocuments { get; set; }
-        public DbSet<SectionType> SectionTypes { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<LookUpMaster> LookUpMasters { get; set; }
+        public DbSet<SectionAttribute> SectionAttributes { get; set; }
     }
 }

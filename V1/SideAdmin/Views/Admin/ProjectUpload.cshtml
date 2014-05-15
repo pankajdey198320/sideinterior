@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("SaveProjectPortfolio", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="alert alert-info">
+
+        Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="file" name="file" id="file" class="form-control" multiple />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Upload!</button>
+                </span>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon fix-Label-width">Caption</span>
+                @Html.TextBoxFor(model => model.CarouselCaption.Text, new { @class = "form-control", placeholder = "Caption", required = "" })
+
+            </div>
+        </div>
+    </div>
+
+}

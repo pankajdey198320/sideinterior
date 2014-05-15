@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SideAdmin.Utility;
 
 namespace SideInfrastructure.Model.ViewModel
 {
-    public class PorfolioViewModel
+    public class PortfolioViewModel
     {
         public string ImgSrc { get; set; }
         public string Description { get; set; }
-        public string DataCatagory { get; set; }
+        public IsotopDataCatagoryType DataCatagory { get; set; }
         public string PageLink { get; set; }
-        public string ImageSizeType { get; set; }
-    }
-
-    public static class ImageSize {
-        public const string Small = "item-small";
-        public const string Small = "item-small";
-        public const string Small = "item-small";
-        public const string Small = "item-small";
-        public const string Small = "item-small";
+        public IsotopeSigeType ImageSizeType { get; set; }
     }
 }

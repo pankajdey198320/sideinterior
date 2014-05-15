@@ -7,7 +7,9 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using SideAdmin.Filters;
 using SideAdmin.Utility;
+using SideInfrastructure;
 using SideInfrastructure.Model.Edmx;
+using SideInfrastructure.Model.ViewModel;
 using V1.Models.ViewModel;
 
 namespace V1.Controllers
@@ -42,7 +44,7 @@ namespace V1.Controllers
                              {
                                  Text = v.SectionDescription
                              },
-                             ImageSrc = url +map.DocumentId
+                             ImageSrc = url + map.DocumentId
 
                          }).ToList();
             }
@@ -52,7 +54,7 @@ namespace V1.Controllers
         [HttpPost]
         public ActionResult UploadImage(CarouselViewModel model)
         {
-           
+
 
             var args = Request.Files[0];
             SaveFile(args, model);
@@ -60,12 +62,11 @@ namespace V1.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage1()
+        public ActionResult UploadImage1(string caption)
         {
-
-
             var args = Request.Files[0];
-           // SaveFile(args, model);
+            var st = Request["Caption"];
+            // SaveFile(args, model);
             return View("UploadImage");
         }
 
@@ -74,15 +75,17 @@ namespace V1.Controllers
         {
             using (SIDEContxts context = new SIDEContxts())
             {
-                var item = context.Sections .FirstOrDefault(p => p.SectionId == id);
+                var item = context.Sections.FirstOrDefault(p => p.SectionId == id);
                 var sectionDocumentMap = context.SectionDocuments.FirstOrDefault(p => p.SectionId == id);
                 if (item != null)
                 {
                     context.Sections.Remove(item);
-                    if (sectionDocumentMap != null) {
+                    if (sectionDocumentMap != null)
+                    {
                         context.SectionDocuments.Remove(sectionDocumentMap);
                         var doc = context.Documents.FirstOrDefault(p => p.DocumentId == sectionDocumentMap.DocumentId);
-                        if (doc != null) {
+                        if (doc != null)
+                        {
                             context.Documents.Remove(doc);
                         }
                     }
@@ -95,7 +98,7 @@ namespace V1.Controllers
         private void SaveFile(HttpPostedFileBase args, CarouselViewModel model)
         {
             byte[] data = new byte[args.ContentLength];
-           
+
             long fileType = 1;
             string extensioin = args.FileName.Substring(args.FileName.LastIndexOf(".") + 1);
             //set the file type based on File Extension
@@ -127,7 +130,8 @@ namespace V1.Controllers
                                    join map in context.SectionDocuments on v.DocumentId equals map.DocumentId
                                    where map.SectionId == model.Id
                                    select v).FirstOrDefault();
-                        if (doc != null) {
+                        if (doc != null)
+                        {
                             doc.DocumentData = img.GetBytes();
                         }
                         context.SaveChanges();
@@ -139,7 +143,7 @@ namespace V1.Controllers
                             CreationDate = DateTime.Now,
                             SectionName = args.FileName,
                             SectionDescription = model.CarouselCaption.Text,
-                            SectionTypeId = 1
+                            SectionTypeId = (long)SectionTypes.HomePageCaraosel
                         };
                         context.Sections.Add(section);
                         var doc = new Document()
@@ -165,5 +169,56 @@ namespace V1.Controllers
             }
         }
 
+        [HttpPost]
+        public void SaveProjectPortfolio(PortfolioViewModel model)
+        {
+            var args = Request.Files[0];
+            byte[] data = new byte[args.ContentLength];
+
+            long fileType = 1;
+            string extensioin = args.FileName.Substring(args.FileName.LastIndexOf(".") + 1);
+            //set the file type based on File Extension
+            switch (extensioin)
+            {
+                case "jpg":
+                    fileType = 1;// "image/jpg";
+                    break;
+                case "png":
+                    fileType = 2;//"image/png";
+                    break;
+                case "gif":
+                    fileType = 3;// "image/gif";
+                    break;
+                default:
+                    fileType = 4;// "OTHERS";
+                    break;
+            }
+
+            using (Stream stream = args.InputStream)
+            {
+                stream.Read(data, 0, data.Length);
+                var img = new WebImage(data);
+                {
+                    var section = new Section()
+                    {
+                        CreationDate = DateTime.Now,
+                        SectionName = model.Description,
+                        SectionDescription = model.Description,
+                        SectionTypeId = 1
+                    };
+                    var doc = new Document()
+                    {
+                        CreatedBy = 1,
+                        DocumentData = img.GetBytes(),
+                        DocumentTypeId = fileType,
+                        DocumentExtension = extensioin,
+                        DocumentName = args.FileName,
+                        CreatedDate = DateTime.Now
+                    };
+                    ModelService svc = new ModelService();
+                    svc.SaveSection(section, doc, new int[] { (int)model.ImageSizeType, (int)model.DataCatagory });
+                }
+            }
+        }
     }
 }

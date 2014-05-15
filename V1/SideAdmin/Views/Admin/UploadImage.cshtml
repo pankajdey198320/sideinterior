@@ -13,11 +13,19 @@
         Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
     </div>
     <div class="row">
+        <div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                <span class="sr-only">60% Complete</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
                 <input type="file" name="file" id="file" class="form-control" multiple />
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Upload!</button>
+                    <button class="btn btn-primary" id="UloadImage" type="button">Upload!</button>
                 </span>
             </div>
             <div class="input-group">
@@ -27,7 +35,6 @@
             </div>
         </div>
     </div>
-
 }
 
 @{
@@ -38,13 +45,20 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#Upload").click(function () {
+            $("#UloadImage").click(function () {
+                var dModel = {
+                    Id : 0,
+                    CarouselCaption: {
+                        Text: $("#CarouselCaption_Text").val()
+                    }
+                };
                 var formData = new FormData();
-                var totalFiles = document.getElementById("fileUploader").files.length;
+                var totalFiles = document.getElementById("file").files.length;
                 for (var i = 0; i < totalFiles; i++) {
-                    var file = document.getElementById("fileUploader").files[i];
+                    var file = document.getElementById("file").files[i];
 
                     formData.append("FileUpload", file);
+                    formData.append("model", JSON.stringify(dModel));
                 }
                 $.ajax({
                     type: "POST",
@@ -53,15 +67,39 @@
                     dataType: 'json',
                     contentType: false,
                     processData: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        //Upload progress
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                //Do something with upload progress
+                                $(".progress-bar").css('width',  percentComplete * 100 + '%');
+                                console.log(percentComplete);
+                            }
+                        }, false);
+                        //Download progress
+                        xhr.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                //Do something with download progress
+                                console.log(percentComplete);
+                            }
+                        }, false);
+                        return xhr;
+                    },
                     success: function (response) {
                         alert('succes!!');
                     },
                     error: function (error) {
-                        alert("errror");
+                        alert(error);
                     }
                 });
             });
         });
+
+
+
 
     </script>
 }
