@@ -44,3 +44,10 @@ input[type="checkbox"].input-validation-error {
 .fix-Label-width {
     width:10em;
 }
+.Image-list-control  {
+    position: relative; 
+    
+}
+    .Image-list-hidden {
+        visibility: hidden;
+    }

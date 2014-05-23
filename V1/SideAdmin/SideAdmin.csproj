@@ -118,6 +118,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\FormFields.cs" />
     <Compile Include="App_Start\AuthenticationFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\MyCustomPrincipal.cs" />
@@ -140,13 +141,17 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Code\UploadHelper.cshtml" />
     <None Include="Properties\PublishProfiles\qa.pubxml" />
+    <Content Include="Scripts\Common\XHRUtility.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

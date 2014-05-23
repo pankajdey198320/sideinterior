@@ -6,100 +6,94 @@
 
 <h2>UploadImage</h2>
 
-@using (Html.BeginForm("UploadImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="alert alert-info">
 
-        Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
-    </div>
-    <div class="row">
-        <div class="progress progress-striped active">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span class="sr-only">60% Complete</span>
-            </div>
-        </div>
+<div class="alert alert-info">
 
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group">
-                <input type="file" name="file" id="file" class="form-control" multiple />
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" id="UloadImage" type="button">Upload!</button>
-                </span>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon fix-Label-width">Caption</span>
-                @Html.TextBoxFor(model => model.CarouselCaption.Text, new { @class = "form-control", placeholder = "Caption", required = "" })
+    Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
+</div>
+<div class="row">
+    @{
 
-            </div>
-        </div>
-    </div>
-}
+        var fileds = new List<FormFields>();
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.file,
+            Caption = "Select Files",
+            FieldId = "file"
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "Caption",
+            FieldId = "txtCaption",
+            PlaceholderText = "Caption"
 
-@{
-    Html.RenderAction("ViewCarouselImageList");
-
-}
-
-@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#UloadImage").click(function () {
-                var dModel = {
-                    Id : 0,
-                    CarouselCaption: {
-                        Text: $("#CarouselCaption_Text").val()
-                    }
-                };
-                var formData = new FormData();
-                var totalFiles = document.getElementById("file").files.length;
-                for (var i = 0; i < totalFiles; i++) {
-                    var file = document.getElementById("file").files[i];
-
-                    formData.append("FileUpload", file);
-                    formData.append("model", JSON.stringify(dModel));
-                }
-                $.ajax({
-                    type: "POST",
-                    url: '/SideAdmin/Admin/UploadImage1',
-                    data: formData,
-                    dataType: 'json',
-                    contentType: false,
-                    processData: false,
-                    xhr: function () {
-                        var xhr = new window.XMLHttpRequest();
-                        //Upload progress
-                        xhr.upload.addEventListener("progress", function (evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                //Do something with upload progress
-                                $(".progress-bar").css('width',  percentComplete * 100 + '%');
-                                console.log(percentComplete);
-                            }
-                        }, false);
-                        //Download progress
-                        xhr.addEventListener("progress", function (evt) {
-                            if (evt.lengthComputable) {
-                                var percentComplete = evt.loaded / evt.total;
-                                //Do something with download progress
-                                console.log(percentComplete);
-                            }
-                        }, false);
-                        return xhr;
-                    },
-                    success: function (response) {
-                        alert('succes!!');
-                    },
-                    error: function (error) {
-                        alert(error);
-                    }
-                });
-            });
         });
 
+    }
+    @UploadHelper.CreateForms(fileds, true, "#UploadImage", "/SideAdmin/Admin/UploadImage1", "loadImageList")
 
 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-primary" id="UploadImage" type="button">Upload!</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="ImageList">
+
+
+</div>
+@*@{
+        Html.RenderAction("ViewCarouselImageList");
+
+    }*@
+
+@section scripts{
+    <script src="~/Scripts/Common/XHRUtility.js"></script>
+    <script type="text/javascript">
+
+        function loadImageList() {
+            var url = "@Url.Action("ViewCarouselImageList", "Admin")"
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    $('#ImageList').html(data);
+                    $('#adminImageList .thumbnail').on('mouseover', function () {
+                        $(this).find("div.Image-list-control").removeClass('Image-list-hidden ');
+                    });
+                    $('#adminImageList .thumbnail').on('mouseout', function () {
+                        $(this).find("div.Image-list-control").addClass('Image-list-hidden ');
+                    });
+
+                    $('#adminImageList .thumbnail a.img-delete').on('click', function () {
+                        deleteImage($(this).attr('imgId'));
+                    });
+                },
+                error: function (data) {
+                    $('#ImageList').html(data);
+                }
+            });
+        }
+        function deleteImage(id) {
+            var url = '@Url.Action("DeleteImage","Admin")'
+            $.ajax({
+                type: "post",
+                url: url,
+                data: { id: id },
+                success: function (data) {
+                    loadImageList();
+                }
+            });
+        }
+        $(document).ready(function () {
+            loadImageList();
+
+
+        });
 
     </script>
 }

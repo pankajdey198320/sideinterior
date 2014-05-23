@@ -24,7 +24,7 @@ namespace V1.Controllers
                          join map in contex.SectionDocuments
                          on v.SectionId equals map.SectionId
                          // join doc in contex.Documents on map.DocumentId equals doc.DocumentId
-                         where v.SectionTypeId == 1
+                         where v.SectionTypeId == (long)SectionTypes.HomePageCaraosel
                          select new CarouselViewModel()
                          {
                              CarouselCaption = new CarouselViewModel.Caption()

@@ -36,7 +36,8 @@ namespace V1.Controllers
                          join map in contex.SectionDocuments
                          on v.SectionId equals map.SectionId
                          // join doc in contex.Documents on map.DocumentId equals doc.DocumentId
-                         where v.SectionTypeId == 1
+                         where v.SectionTypeId == (long)SectionTypes.HomePageCaraosel
+                         orderby map.SectionId descending
                          select new CarouselViewModel()
                          {
                              Id = map.SectionId,
@@ -65,8 +66,15 @@ namespace V1.Controllers
         public ActionResult UploadImage1(string caption)
         {
             var args = Request.Files[0];
-            var st = Request["Caption"];
-            // SaveFile(args, model);
+            var st = Request["txtCaption"];
+            var model = new CarouselViewModel()
+            {
+                CarouselCaption = new CarouselViewModel.Caption()
+                {
+                    Text = st
+                }
+            };
+            SaveFile(args, model);
             return View("UploadImage");
         }
 

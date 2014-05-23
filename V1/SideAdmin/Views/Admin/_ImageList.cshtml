@@ -3,33 +3,21 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="row">
-    <div class="col-lg-6">
-        <table class="table">
-            <tr>
-                <th>Caption</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageSrc)
-                </th>
+<div class="row" id="adminImageList">
 
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model) {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.CarouselCaption.Text)</td>
-            <td>
-                <img src='@Html.DisplayFor(modelItem => item.ImageSrc)' class="img-thumbnail" alt="Responsive image">
-                @Html.Partial("_Uploader",item)
-            </td>
-
-            <td>
-
-                @Html.ActionLink("Delete", "DeleteImage", new {  id=item.Id })
-            </td>
-        </tr>
-}
-
-        </table>
-    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail"><input class="checkbox" type="checkbox" id="Chk_@item.Id" imgid="@item.Id">
+                <img src='@item.ImageSrc' alt="300x200">
+                
+                <div class="caption">
+                    <p>
+                        @item.CarouselCaption.Text  
+                    <div class="Image-list-control Image-list-hidden"><a href="#" imgid="@item.Id" class="btn btn-primary img-delete" role="button">Delete</a> </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
 </div>
