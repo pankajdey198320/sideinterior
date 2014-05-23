@@ -16,7 +16,7 @@ public class FormFields
     public IFormFieldFormatter  FieldFormatter { get; set; }
     public enum FieldType
     {
-        Text, TextArea, Checkbox, Radio, DropdownList, file
+        Text, TextArea, Checkbox, Radio, DropdownList, file,hidden
     }
 }
 

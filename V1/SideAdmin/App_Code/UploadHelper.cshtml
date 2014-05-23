@@ -75,6 +75,12 @@
                         break;
                     }
 
+                case FormFields.FieldType.hidden:
+                    {
+                        <input type="hidden" name="@field.FieldId" id="@field.FieldId" value="@field.Caption" />
+                        break;
+                    }
+
             }
                 }
 
@@ -101,7 +107,8 @@
                     {
                         if (field.Type == FormFields.FieldType.Text
                             || field.Type == FormFields.FieldType.TextArea
-                             || field.Type == FormFields.FieldType.Checkbox)
+                             || field.Type == FormFields.FieldType.Checkbox
+                            || field.Type == FormFields.FieldType.hidden)
                         {
                         misc += field.FieldId + " : "  + field.FieldFormatter.GetValueRetrivalString(field)+  ",";
                         }

@@ -67,8 +67,11 @@ namespace V1.Controllers
         {
             var args = Request.Files[0];
             var st = Request["txtCaption"];
+            long id = -1;
+            long.TryParse(Convert.ToString(Request["hdnImgId"]), out id);
             var model = new CarouselViewModel()
-            {
+            { 
+                Id=id,
                 CarouselCaption = new CarouselViewModel.Caption()
                 {
                     Text = st

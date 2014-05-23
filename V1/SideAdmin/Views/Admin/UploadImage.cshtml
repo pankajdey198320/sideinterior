@@ -29,6 +29,12 @@
             PlaceholderText = "Caption"
 
         });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.hidden,
+            Caption = "-1",
+            FieldId = "hdnImgId"
+        });
 
     }
     @UploadHelper.CreateForms(fileds, true, "#UploadImage", "/SideAdmin/Admin/UploadImage1", "loadImageList")
@@ -72,6 +78,11 @@
                     $('#adminImageList .thumbnail a.img-delete').on('click', function () {
                         deleteImage($(this).attr('imgId'));
                     });
+                    $('#adminImageList .thumbnail input.checkbox').on('click', function () {
+                        if ($(this).prop('checked')) {
+                           selectImage($(this).attr('imgId'));
+                        }
+                    });
                 },
                 error: function (data) {
                     $('#ImageList').html(data);
@@ -88,6 +99,9 @@
                     loadImageList();
                 }
             });
+        }
+        function selectImage(id) {
+            $('#hdnImgId').val(id);
         }
         $(document).ready(function () {
             loadImageList();

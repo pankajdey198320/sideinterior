@@ -5,7 +5,7 @@ using SideInfrastructure.Model.Edmx;
 
 namespace V1.Controllers
 {
-    [OutputCache(NoStore=false, Duration=3600)]
+    //[OutputCache(NoStore=false, Duration=3600)]
     public class DocumentController : Controller
     {
         //
