@@ -60,3 +60,6 @@ input[type="checkbox"].input-validation-error {
     left: 0px;
     background-color: aqua;
 }
+.img-selected {
+    background-color:beige;
+}

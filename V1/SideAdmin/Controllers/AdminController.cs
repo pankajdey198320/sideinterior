@@ -145,6 +145,11 @@ namespace V1.Controllers
                         {
                             doc.DocumentData = img.GetBytes();
                         }
+
+                        var con = (from v in context.Sections where v.SectionId == model.Id select v).FirstOrDefault();
+                        if (con != null) {
+                            con.SectionDescription = model.CarouselCaption.Text;
+                        }
                         context.SaveChanges();
                     }
                     else

@@ -67,6 +67,8 @@
                 type: "GET",
                 url: url,
                 success: function (data) {
+                    $('#hdnImgId').val(0);
+                    $('#txtCaption').val('');
                     $('#ImageList').html(data);
                     $('#adminImageList .thumbnail').on('mouseover', function () {
                         $(this).find("div.Image-list-control").removeClass('Image-list-hidden ');
@@ -77,10 +79,14 @@
 
                     $('#adminImageList .thumbnail a.img-delete').on('click', function () {
                         deleteImage($(this).attr('imgId'));
+
                     });
                     $('#adminImageList .thumbnail input.checkbox').on('click', function () {
                         if ($(this).prop('checked')) {
-                           selectImage($(this).attr('imgId'));
+                            $('.thumbnail :checkbox').not(this).removeAttr('checked');
+                            $('.thumbnail').removeClass('img-selected');
+                            selectImage($(this).attr('imgId'), $(this).siblings('.caption').find('p').html().trim());
+                            $(this).parent().addClass('img-selected');
                         }
                     });
                 },
@@ -100,8 +106,9 @@
                 }
             });
         }
-        function selectImage(id) {
+        function selectImage(id,caption) {
             $('#hdnImgId').val(id);
+            $('#txtCaption').val(caption);
         }
         $(document).ready(function () {
             loadImageList();
