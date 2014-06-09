@@ -17,7 +17,7 @@ namespace SideAdmin.Utility
     
     public enum LookupTypes
     {
-        Section = 3, Document = 4, IsotopeSige = 5, IsotopDataCatagory =6
+        Section = 3, Document = 4, IsotopeSige = 5, IsotopDataCatagory =6, Attributes= 14
     }
     /// <summary>
     /// Defines modules of this projects
@@ -34,5 +34,10 @@ namespace SideAdmin.Utility
     public enum IsotopDataCatagoryType
     {
         Residential = 13
+    }
+
+    public enum SectionAttributeTypes
+    {
+        ProjectCheckList = 15
     }
 }

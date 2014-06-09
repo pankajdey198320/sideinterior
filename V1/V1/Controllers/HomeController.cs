@@ -58,7 +58,7 @@ namespace V1.Controllers
                     }
                 case "Project":
                     {
-                        return PartialView("_navItems", GetMenu(2));
+                        return PartialView("_navItems", GetMenu(0));
                     }
                 case "portfolio":
                     {

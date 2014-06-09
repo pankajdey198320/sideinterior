@@ -5,7 +5,7 @@ using SideInfrastructure.Model.Edmx;
 
 namespace V1.Controllers
 {
-    //[OutputCache(NoStore=false, Duration=3600)]
+    [OutputCache(NoStore=false, Duration=600)]
     public class DocumentController : Controller
     {
         //
@@ -20,17 +20,19 @@ namespace V1.Controllers
             }
         }
 
-        public ActionResult Thumnail(long id)
+        public ActionResult Thumnail(long id, int height = 150, int width = 150)
         {
             using (SIDEContxts context = new SIDEContxts())
             {
                 var doc = context.Documents.FirstOrDefault(p => p.DocumentId == id);
 
-                var img = new WebImage(doc.DocumentData).Resize(150, 150, true, false);
+                var img = new WebImage(doc.DocumentData).Resize(width, height, true, false);
                 return File(img.GetBytes(), "image/png");
             }
 
         }
+
+
 
     }
 }

@@ -14,6 +14,11 @@ namespace SideInfrastructure.Model.Edmx
     
     public partial class Section
     {
+        public Section()
+        {
+            this.SectionAttributeValues = new HashSet<SectionAttributeValue>();
+        }
+    
         public long SectionId { get; set; }
         public string SectionName { get; set; }
         public string SectionDescription { get; set; }
@@ -23,5 +28,6 @@ namespace SideInfrastructure.Model.Edmx
     
         public virtual User User { get; set; }
         public virtual LookUpMaster LookUpMaster { get; set; }
+        public virtual ICollection<SectionAttributeValue> SectionAttributeValues { get; set; }
     }
 }

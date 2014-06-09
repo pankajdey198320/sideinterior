@@ -1,28 +1,131 @@
-﻿@{
+﻿@model SideInfrastructure.Model.ViewModel.ProjectViewModel
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div id="AlertMsg" class="alert alert-success hidden">
+    <a href="#" class="alert-link">Successfully Saved</a>
+</div>
 
-@using (Html.BeginForm("SaveProjectPortfolio", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="alert alert-info">
+<div class="row" id="adminImageList">
 
-        Best dimension of picture is  1903x750, otherwise it ll resize the image on upload
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group">
-                <input type="file" name="file" id="file" class="form-control" multiple />
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Upload!</button>
-                </span>
+    @foreach (var item in Model.ImageList)
+    {
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <span class="glyphicon glyphicon-trash" id="@item.Id" style="cursor:pointer;"></span>
+                <img src='@item.ImageSrc' alt="300x200">
             </div>
-            <div class="input-group">
-                <span class="input-group-addon fix-Label-width">Caption</span>
-                @Html.TextBoxFor(model => model.CarouselCaption.Text, new { @class = "form-control", placeholder = "Caption", required = "" })
-
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                <span class="sr-only">60% Complete</span>
             </div>
         </div>
     </div>
 
+    <div class="col-md-2">
+        <input type="file" name="file_source" id="imgFile" class="form-control" size="10" style="width:200px" multiple>
+    </div>
+    <div class="col-md-1">
+        <button type="button" id="delete">Delete</button>
+
+    </div>
+
+</div>
+<form role="form">
+    <input type="hidden" value="@Model.Id" id="hdnProjectId" />
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="txtTitle">Project Title</label>
+
+                <input type="text" name="txtTitle" id="txtTitle" class="form-control" value="@Model.Title" />
+            </div>
+            <div class="form-group">
+                <label for="txtTitle">Project Description</label>
+                <textarea class="form-control" id="txtDescription" rows="15">@Model.Description</textarea>
+
+            </div>
+        </div>
+        <div class="col-md-4" id="chklstContainer">
+            <strong>Checklists</strong><span id="addChecklist" class="glyphicon glyphicon-plus pull-right" style="cursor:pointer;"></span>
+            @foreach (var item in Model.CheckLists)
+            {
+                <div class="form-group">
+                    <input type="text" name="txtTitle" class="form-control" value="@item" />
+                </div>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <button id="saveProject" type="button">Save</button>
+    </div>
+</form>
+
+@section scripts{
+    <script src="~/Scripts/Common/XHRUtility.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#addChecklist').click(function () {
+                $('#chklstContainer').append('<div class="form-group"> <input type="text" name="txtTitle" id="txtTitle" class="form-control" value="" /></div>');
+            });
+            $('#saveProject').click(function () {
+                var checklist = new Array();
+                $($('#chklstContainer').find('input.form-control')).each(function (idx, item) {
+                    checklist.push($(item).val());
+                });
+                var model = {
+                    Id: $('#hdnProjectId').val(),
+                    Title: $('#txtTitle').val(),
+                    Description: $('#txtDescription').val(),
+                    CheckLists: checklist
+                };
+                var formData = JSON.stringify(model);
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveProject")',
+                    data: formData,
+                    contentType: 'Application/json',
+
+                    success: function (response) {
+                        $("#AlertMsg").removeClass('hidden').html("Successfully saved");
+                        //  window.location.href = '@Url.Action("ProjectList")'
+                    },
+                    error: function (error) {
+
+                    }
+                });
+            });
+            $('#imgFile').change(function () {
+                $.fn.uploadAjax(this.files, '@Url.Action("UploadProject", new {id= Model.Id })', {}, function (evt) {
+                    var percentComplete = evt.loaded / evt.total;
+                    $(".progress-bar").css('width', percentComplete * 100 + '%');
+                    console.log(percentComplete);
+                }, function (data) {
+                    window.location.reload();
+                }, null);
+            });
+            $('.glyphicon-trash').click(function () {
+                var data = { id: $(this).attr('id') };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteProjectImage")',
+                    data: JSON.stringify(data),
+                    contentType: 'Application/json',
+                    success: function (response) {
+                        $("#AlertMsg").removeClass('hidden').html("Successfully saved");
+                        //  window.location.href = '@Url.Action("ProjectList")'
+                    },
+                    error: function (error) {
+
+                    }
+                });
+            });
+        });
+    </script>
 }

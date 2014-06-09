@@ -14,8 +14,17 @@ namespace SideInfrastructure.Model.Edmx
     
     public partial class SectionAttribute
     {
+        public SectionAttribute()
+        {
+            this.SectionAttributeValues = new HashSet<SectionAttributeValue>();
+        }
+    
         public long SectionAttributeID { get; set; }
-        public long SectionId { get; set; }
+        public long SectionTypeId { get; set; }
         public long AttributeId { get; set; }
+    
+        public virtual LookUpMaster LookUpMaster { get; set; }
+        public virtual LookUpMaster LookUpMaster1 { get; set; }
+        public virtual ICollection<SectionAttributeValue> SectionAttributeValues { get; set; }
     }
 }

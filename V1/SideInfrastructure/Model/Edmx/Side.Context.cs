@@ -26,12 +26,12 @@ namespace SideInfrastructure.Model.Edmx
         }
     
         public DbSet<Document> Documents { get; set; }
-        public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<SectionDocument> SectionDocuments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<LookUpMaster> LookUpMasters { get; set; }
         public DbSet<SectionAttribute> SectionAttributes { get; set; }
+        public DbSet<SectionAttributeValue> SectionAttributeValues { get; set; }
     }
 }

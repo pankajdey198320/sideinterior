@@ -22,7 +22,6 @@ namespace SideInfrastructure.Model.Edmx
         public byte[] DocumentData { get; set; }
         public string DocumentExtension { get; set; }
     
-        public virtual DocumentType DocumentType { get; set; }
         public virtual User User { get; set; }
     }
 }

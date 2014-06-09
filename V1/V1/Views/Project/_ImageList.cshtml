@@ -1,0 +1,21 @@
+﻿@model IEnumerable<V1.Models.ViewModel.CarouselViewModel>
+
+<div class="row" id="adminImageList">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail"><input class="checkbox" type="checkbox" id="Chk_@item.Id" imgid="@item.Id">
+                <img src='@item.ImageSrc' alt="300x200">
+                
+                <div class="caption">
+                    <p>
+                        @item.CarouselCaption.Text  
+                    <div class="Image-list-control Image-list-hidden"><a href="#" imgid="@item.Id" class="btn btn-primary img-delete" role="button">Delete</a> </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -3,16 +3,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SideAdmin.Utility;
+using SideInfrastructure.Model.Edmx;
+using SideInfrastructure.Model.ViewModel;
+using V1.Models.ViewModel;
 
 namespace V1.Controllers
 {
     public class ProjectController : Controller
     {
+        private string DocServerUrl
+        {
+            get
+            {
+                return ConfigurationUtility.GetDocServerUrl();
+            }
+        }
         //
         // GET: /Project/
         public ActionResult Index()
         {
-            return View();
+
+            using (SIDEContxts context = new SIDEContxts())
+            {
+
+                var projs = (from v in context.Sections
+                             where v.SectionTypeId == (long)SectionTypes.Project
+                             select new ProjectViewModel()
+                             {
+                                 Id = (int)v.SectionId,
+                                 Description = v.SectionDescription,
+                                 Title = v.SectionName,
+                                 CoverImage = (from k in context.SectionDocuments
+                                               where k.SectionId == v.SectionId
+                                               select
+                                                    DocServerUrl + k.DocumentId
+                                              ).FirstOrDefault()
+                             }).ToList();
+                return View(projs);
+            }
+
         }
-	}
+
+        public ActionResult Details(int id)
+        {
+
+            ProjectViewModel model = new ProjectViewModel();
+            using (SIDEContxts context = new SIDEContxts())
+            {
+
+                model = (from v in context.Sections
+                         where v.SectionId == id
+                         select new ProjectViewModel()
+                         {
+                             Id = (int)v.SectionId,
+                             Title = v.SectionName,
+                             Description = v.SectionDescription,
+                             ImageList = (from k in context.SectionDocuments
+                                          where k.SectionId == id
+                                          select new CarouselViewModel()
+                                          {
+                                              ImageSrc = DocServerUrl + k.DocumentId
+                                          }).ToList(),
+                             CheckLists = (from m in context.SectionAttributes
+                                           join k in context.SectionAttributeValues
+                                               on m.SectionAttributeID equals k.SectionAttributeId
+                                           where m.SectionTypeId == (long)SectionTypes.Project && m.AttributeId == (long)SectionAttributeTypes.ProjectCheckList
+                                           && k.SectionId == v.SectionId
+                                           select k.AttributeValue
+                                                ).ToList()
+                         }).FirstOrDefault();
+            }
+            if (model == null)
+                model = new ProjectViewModel();
+
+            if (model.ImageList.Any())
+                model.ImageList.FirstOrDefault().IsActive = true;
+            model.RelatedProjects.Add(new ProjectViewModel()
+            {
+                Title = "Related 1",
+                CoverImage = "http://localhost/V1/Document/Thumnail/29?height=300&width=263",
+                Id = 29
+            });
+            return View(model);
+        }
+
+    }
 }

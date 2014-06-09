@@ -5,20 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8281486a6f2342ab994afbe0a32cd752" Name="Diagram1">
-        <EntityTypeShape EntityType="SIDEModel.Document" Width="1.5" PointX="8.25" PointY="3.375" />
-        <EntityTypeShape EntityType="SIDEModel.DocumentType" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="SIDEModel.Person" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="SIDEModel.Section" Width="1.5" PointX="5.25" PointY="3.375" />
-        <EntityTypeShape EntityType="SIDEModel.SectionDocument" Width="1.5" PointX="2.75" PointY="6.5" />
-        <EntityTypeShape EntityType="SIDEModel.User" Width="1.5" PointX="3" PointY="3.375" />
-        <AssociationConnector Association="SIDEModel.FK_Document_DocumentType" />
+        <EntityTypeShape EntityType="SIDEModel.Document" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="SIDEModel.Person" Width="1.5" PointX="1.5" PointY="8.875" />
+        <EntityTypeShape EntityType="SIDEModel.Section" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SIDEModel.SectionDocument" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SIDEModel.User" Width="1.5" PointX="0.75" PointY="5" />
         <AssociationConnector Association="SIDEModel.FK_Document_User" />
         <AssociationConnector Association="SIDEModel.FK_User_Person" />
         <AssociationConnector Association="SIDEModel.FK_Section_User" />
-        <EntityTypeShape EntityType="SIDEModel.LookUpMaster" Width="1.5" PointX="5.375" PointY="6.875" />
-        <AssociationConnector Association="SIDEModel.FK_Section_SectionType1" />
-        <EntityTypeShape EntityType="SIDEModel.SectionAttribute" Width="1.5" PointX="0.75" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="SIDEModel.LookUpMaster" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SIDEModel.SectionAttribute" Width="1.5" PointX="3" PointY="13.125" />
+        <AssociationConnector Association="SIDEModel.FK_Section_SectionType" />
+        <AssociationConnector Association="SIDEModel.FK_SectionAttributes_LookUpMaster" />
+        <AssociationConnector Association="SIDEModel.FK_SectionAttributes_LookUpMaster1" />
+        <EntityTypeShape EntityType="SIDEModel.SectionAttributeValue" Width="1.5" PointX="5.25" PointY="7.125" />
+        <AssociationConnector Association="SIDEModel.FK_SectionAttributeValue_Section" />
+        <AssociationConnector Association="SIDEModel.FK_SectionAttributeValue_SectionAttributes" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

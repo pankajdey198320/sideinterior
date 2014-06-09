@@ -1,0 +1,76 @@
+﻿@model SideInfrastructure.Model.ViewModel.ProjectViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrap">
+    <div id="ProjectPage">
+        <div class="sidebar-sticky" style="height: 58px; width: auto; margin: auto; position: absolute; float: none; left: 0px; right: 0px; top: 0px; bottom: auto;">
+            <div class="row BottomMenuWrap SimpleTop sticky" style="width: 1380px; top: 69px; bottom: auto; position: fixed; left: 0px;">
+
+
+                <div class="container">
+
+                    <div class="customMenuGraySimple">
+                        <ul class="BottomMenu">
+                            <li><a href='@Url.Action("Index")'>Back to The List</a></li>
+                        </ul>
+                        <ul class="PageNavi">
+                            <li><a href="#"><span><em></em></span><del class="text">Previous Project</del></a></li>
+                            <li><a href="#"><span><em></em></span><del class="text">Next Project</del></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row-fluid BlogSingleContent">
+            <div class="container">
+                
+                <div class="span12 Null">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="BlogArticleSingle ProjectArticle">
+                                <div class="span12">
+                                    @{
+                                        Html.RenderPartial("_Carousel", Model.ImageList);
+                                    }
+                                   
+                                    <div class="row ProjectText">
+                                        <div class="span8 text">
+                                            <div class="title">@Model.Title </div>
+                                            @Model.Description                                            
+                                        </div>
+                                        <div class="span4">
+                                            <ul class="CheckList">
+                                                <li class="title">Check List</li>
+                                                @foreach (var li in Model.CheckLists)
+                                                {
+                                                    <li>@li</li>
+                                                }
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <div class="RelatedTitle">Related Projects</div>
+                                    <div class="row-fluid RelatedProjects">
+                                        @foreach (var item in Model.RelatedProjects) { 
+                                        <div class="span3">
+                                            <a href='@Url.Action("Details", new { id = item.Id})'><img src="@item.CoverImage" alt=""><span class="title">@item.Title @*<br><em>Hotels &amp; Bars</em>*@</span></a>
+                                        </div>
+                                        
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

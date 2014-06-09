@@ -237,11 +237,13 @@
     <Content Include="Views\Shared\_SubLayout.cshtml" />
     <Content Include="Views\Shared\_SubNav.cshtml" />
     <Content Include="Views\Shared\_navItems.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Views\Portfolio\_Index.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Portfolio\Index - Copy.cshtml" />
     <Content Include="Views\Portfolio\_ProtfolioWrap.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\_ImageList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\DynamicImage\13\" />

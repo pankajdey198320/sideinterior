@@ -1,0 +1,26 @@
+﻿@model  IEnumerable<SideInfrastructure.Model.ViewModel.ProjectViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="wrap" class="container" style="margin-top:10rem;">
+    <div class="row-fluid">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                    <a href='@Url.Action("Project", new { id = item.Id })'>   <img src='@item.CoverImage' alt="300x200"></a>
+
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>

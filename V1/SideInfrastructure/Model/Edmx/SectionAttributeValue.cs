@@ -12,17 +12,14 @@ namespace SideInfrastructure.Model.Edmx
     using System;
     using System.Collections.Generic;
     
-    public partial class DocumentType
+    public partial class SectionAttributeValue
     {
-        public DocumentType()
-        {
-            this.Documents = new HashSet<Document>();
-        }
+        public long SectionAttributeValueId { get; set; }
+        public long SectionAttributeId { get; set; }
+        public string AttributeValue { get; set; }
+        public Nullable<long> SectionId { get; set; }
     
-        public long DocumentTypeId { get; set; }
-        public string DocumentTypeName { get; set; }
-        public string DocumentTypeDescription { get; set; }
-    
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual Section Section { get; set; }
+        public virtual SectionAttribute SectionAttribute { get; set; }
     }
 }

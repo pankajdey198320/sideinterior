@@ -18,13 +18,13 @@ namespace SideInfrastructure
                     SectionId = data.SectionId,
                     DocumentId = docs.DocumentId
                 };
-                context.SectionDocuments.Add(da);
-                foreach (int attr in attributes) {
-                    context.SectionAttributes.Add(new SectionAttribute() { 
-                     AttributeId = attr,
-                     SectionId= data.SectionId
-                    });
-                }
+                //context.SectionDocuments.Add(da);
+                //foreach (int attr in attributes) {
+                //    context.SectionAttributes.Add(new SectionAttribute() { 
+                //     AttributeId = attr,
+                //     SectionId= data.SectionId
+                //    });
+                //}
                 context.SaveChanges();
             }
         }
