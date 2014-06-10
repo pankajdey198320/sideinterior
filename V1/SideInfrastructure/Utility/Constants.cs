@@ -8,6 +8,7 @@ namespace SideAdmin.Utility
     public class ConfigurationConstants
     {
         public const string DocserverUrl = "DocServer";
+        public const string ThumbnailUrl = "Thumbnail";
     }
     public static class LoginConstants
     {

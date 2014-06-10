@@ -10,5 +10,9 @@ namespace SideAdmin.Utility
         public static string GetDocServerUrl() {
             return System.Configuration.ConfigurationManager.AppSettings[ConfigurationConstants.DocserverUrl];
         }
+        public static string GetImageThumbnailUrl()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings[ConfigurationConstants.ThumbnailUrl];
+        }
     }
 }

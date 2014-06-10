@@ -19,6 +19,14 @@ namespace V1.Controllers
                 return ConfigurationUtility.GetDocServerUrl();
             }
         }
+
+        private string ThumbnailUrl
+        {
+            get
+            {
+                return ConfigurationUtility.GetImageThumbnailUrl();
+            }
+        }
         //
         // GET: /Project/
         public ActionResult Index()
@@ -37,7 +45,7 @@ namespace V1.Controllers
                                  CoverImage = (from k in context.SectionDocuments
                                                where k.SectionId == v.SectionId
                                                select
-                                                    DocServerUrl + k.DocumentId
+                                                    ThumbnailUrl + k.DocumentId
                                               ).FirstOrDefault()
                              }).ToList();
                 return View(projs);
@@ -63,7 +71,7 @@ namespace V1.Controllers
                                           where k.SectionId == id
                                           select new CarouselViewModel()
                                           {
-                                              ImageSrc = DocServerUrl + k.DocumentId
+                                              ImageSrc = DocServerUrl + k.DocumentId + "?height=300&width=263"
                                           }).ToList(),
                              CheckLists = (from m in context.SectionAttributes
                                            join k in context.SectionAttributeValues
