@@ -14,5 +14,10 @@ namespace SideAdmin.Utility
         {
             return System.Configuration.ConfigurationManager.AppSettings[ConfigurationConstants.ThumbnailUrl];
         }
+        
+        public static string GetDomainUrl()
+        {
+            return System.Configuration.ConfigurationManager.AppSettings[ConfigurationConstants.DomainUrl];
+        }
     }
 }

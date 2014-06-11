@@ -21,6 +21,7 @@ namespace V1.Controllers
         private const string KUSERID = "PreloginUserId";
         public ActionResult Login()
         {
+            HttpContext.Session[LoginConstants.LoginSession] = null;
             return View();
         }
 

@@ -9,6 +9,7 @@ namespace SideAdmin.Utility
     {
         public const string DocserverUrl = "DocServer";
         public const string ThumbnailUrl = "Thumbnail";
+        public const string DomainUrl = "Domain";
     }
     public static class LoginConstants
     {
@@ -40,5 +41,10 @@ namespace SideAdmin.Utility
     public enum SectionAttributeTypes
     {
         ProjectCheckList = 15
+    }
+
+    public enum ComponentStatus
+    {
+        Active =1, InActive = 0
     }
 }

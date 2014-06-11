@@ -29,12 +29,10 @@
     </div>
 
     <div class="col-md-2">
+        <label for="imgFile">Upload new image</label>
         <input type="file" name="file_source" id="imgFile" class="form-control" size="10" style="width:200px" multiple>
     </div>
-    <div class="col-md-1">
-        <button type="button" id="delete">Delete</button>
-
-    </div>
+    
 
 </div>
 <form role="form">
@@ -50,6 +48,12 @@
                 <label for="txtTitle">Project Description</label>
                 <textarea class="form-control" id="txtDescription" rows="15">@Model.Description</textarea>
 
+            </div>
+            <div class="checkbox">
+                <label for="txtTitle">
+                    <input type="checkbox" id="chkStatus" checked="@Model.Status" />
+                     Active
+                </label>
             </div>
         </div>
         <div class="col-md-4" id="chklstContainer">
@@ -83,7 +87,8 @@
                     Id: $('#hdnProjectId').val(),
                     Title: $('#txtTitle').val(),
                     Description: $('#txtDescription').val(),
-                    CheckLists: checklist
+                    CheckLists: checklist,
+                    Status: $('#chkStatus').prop('checked')
                 };
                 var formData = JSON.stringify(model);
                 $.ajax({
@@ -119,6 +124,7 @@
                     contentType: 'Application/json',
                     success: function (response) {
                         $("#AlertMsg").removeClass('hidden').html("Successfully saved");
+                        location.reload(true);
                         //  window.location.href = '@Url.Action("ProjectList")'
                     },
                     error: function (error) {

@@ -29,5 +29,7 @@ namespace SideInfrastructure.Model.ViewModel
         public List<string> CheckLists { get; set; }
 
         public List<ProjectViewModel> RelatedProjects { get; set; }
+
+        public bool Status { get; set; }
     }
 }

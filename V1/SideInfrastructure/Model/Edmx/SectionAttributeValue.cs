@@ -19,7 +19,7 @@ namespace SideInfrastructure.Model.Edmx
         public string AttributeValue { get; set; }
         public Nullable<long> SectionId { get; set; }
     
-        public virtual Section Section { get; set; }
         public virtual SectionAttribute SectionAttribute { get; set; }
+        public virtual Section Section { get; set; }
     }
 }

@@ -16,9 +16,9 @@ namespace SideInfrastructure.Model.Edmx
     {
         public LookUpMaster()
         {
-            this.Sections = new HashSet<Section>();
             this.SectionAttributes = new HashSet<SectionAttribute>();
             this.SectionAttributes1 = new HashSet<SectionAttribute>();
+            this.Sections = new HashSet<Section>();
         }
     
         public long LookupId { get; set; }
@@ -29,8 +29,8 @@ namespace SideInfrastructure.Model.Edmx
         public int Status { get; set; }
         public Nullable<long> ParentId { get; set; }
     
-        public virtual ICollection<Section> Sections { get; set; }
         public virtual ICollection<SectionAttribute> SectionAttributes { get; set; }
         public virtual ICollection<SectionAttribute> SectionAttributes1 { get; set; }
+        public virtual ICollection<Section> Sections { get; set; }
     }
 }

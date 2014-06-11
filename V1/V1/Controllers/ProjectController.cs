@@ -36,7 +36,8 @@ namespace V1.Controllers
             {
 
                 var projs = (from v in context.Sections
-                             where v.SectionTypeId == (long)SectionTypes.Project
+                             where v.SectionTypeId == (long)SectionTypes.Project &&
+                             v.Status == (int)ComponentStatus.Active
                              select new ProjectViewModel()
                              {
                                  Id = (int)v.SectionId,

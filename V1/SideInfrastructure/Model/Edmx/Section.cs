@@ -25,9 +25,10 @@ namespace SideInfrastructure.Model.Edmx
         public Nullable<long> UserId { get; set; }
         public System.DateTime CreationDate { get; set; }
         public Nullable<long> SectionTypeId { get; set; }
+        public int Status { get; set; }
     
-        public virtual User User { get; set; }
         public virtual LookUpMaster LookUpMaster { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<SectionAttributeValue> SectionAttributeValues { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace SideAdmin.Filters
 
             if (!sessionAlive)
             {
-                filterContext.Result = new HttpUnauthorizedResult();
+                filterContext.Result = new   HttpUnauthorizedResult();
             }
         }
     }

@@ -14,7 +14,7 @@ using V1.Models.ViewModel;
 
 namespace V1.Controllers
 {
-    //[CustomAuthentication]
+    [CustomAuthentication]
     public class AdminController : Controller
     {
         //
@@ -263,6 +263,7 @@ namespace V1.Controllers
                                                     this.DocServerUrl + k.DocumentId
                                               ).FirstOrDefault()
                              }).ToList();
+                ResetSessionContainer();
                 return View("ProjectList", projs);
             }
 
@@ -281,11 +282,12 @@ namespace V1.Controllers
                              Id = (int)v.SectionId,
                              Title = v.SectionName,
                              Description = v.SectionDescription,
+                             Status = v.Status > 0,
                              ImageList = (from k in context.SectionDocuments
                                           where k.SectionId == id
                                           select new CarouselViewModel()
                                           {
-                                              Id= k.DocumentId,
+                                              Id = k.DocumentId,
                                               ImageSrc = this.DocServerUrl + k.DocumentId
                                           }).ToList(),
                              CheckLists = (from m in context.SectionAttributes
@@ -304,7 +306,8 @@ namespace V1.Controllers
             {
                 model.ImageList.Add(new Models.ViewModel.CarouselViewModel()
                 {
-                    ImageSrc = "http://localhost/SideAdmin/Admin/Thumnail/" + items.DocumentId
+                    Id = items.DocumentId,
+                    ImageSrc = ConfigurationUtility.GetDomainUrl() + "/Admin/Thumnail/" + items.DocumentId
                 });
             }
 
@@ -322,7 +325,7 @@ namespace V1.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 Document vm = new Document();
-                vm.DocumentId = docs.Count();
+                vm.DocumentId = -docs.Count();
                 vm.DocumentExtension = Request.Files[i].FileName.Substring(Request.Files[i].FileName.LastIndexOf(".") + 1);
                 vm.DocumentTypeId = 1;
                 vm.CreatedBy = 1;
@@ -352,7 +355,8 @@ namespace V1.Controllers
                         CreationDate = DateTime.Now,
                         SectionName = model.Title,
                         SectionDescription = model.Description,
-                        SectionTypeId = (long)SectionTypes.Project
+                        SectionTypeId = (long)SectionTypes.Project,
+                        Status = model.Status ? 1 : 0
                     };
                     ctx.Sections.Add(section);
                 }
@@ -361,6 +365,7 @@ namespace V1.Controllers
                     section = (from v in ctx.Sections where v.SectionId == model.Id select v).FirstOrDefault();
                     section.SectionName = model.Title;
                     section.SectionDescription = model.Description;
+                    section.Status = model.Status ? 1 : 0;
                 }
 
                 var lst = new List<Document>();
@@ -378,14 +383,14 @@ namespace V1.Controllers
                 }
                 ctx.Documents.AddRange(lst);
                 ctx.SaveChanges();
-                var existings=(from m in ctx.SectionAttributeValues
-                               join k in ctx.SectionAttributes
-                                   on m.SectionAttributeId equals k.SectionAttributeID
-                               where k.SectionTypeId == (long)SectionTypes.Project
-                               && k.AttributeId == (long)SectionAttributeTypes.ProjectCheckList
-                               && m.SectionId == section.SectionId 
-                               select m.AttributeValue).ToList();
-                var chkattr =model.CheckLists.Where( v=> !existings.Contains(v)).ToList();
+                var existings = (from m in ctx.SectionAttributeValues
+                                 join k in ctx.SectionAttributes
+                                     on m.SectionAttributeId equals k.SectionAttributeID
+                                 where k.SectionTypeId == (long)SectionTypes.Project
+                                 && k.AttributeId == (long)SectionAttributeTypes.ProjectCheckList
+                                 && m.SectionId == section.SectionId
+                                 select m.AttributeValue).ToList();
+                var chkattr = model.CheckLists.Where(v => !existings.Contains(v)).ToList();
                 foreach (var str in chkattr)
                 {
                     ctx.SectionAttributeValues.Add(new SectionAttributeValue()
@@ -410,18 +415,20 @@ namespace V1.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteProjectImage(long id) {
+        public ActionResult DeleteProjectImage(long id)
+        {
             using (SIDEContxts ctx = new SIDEContxts())
             {
-                var secDoc = ctx.SectionDocuments.Where(v => v.DocumentId == id).ToList();
-                ctx.SectionDocuments.RemoveRange(secDoc);
-                var doc = ctx.Documents.FirstOrDefault(v => v.DocumentId == id);
-                if (doc != null)
+                if (id > 0)
                 {
-                    ctx.Documents.Remove(doc);
-                  
+                    ctx.Database.ExecuteSqlCommand("delete from SectionDocument where documentid = " + id + ";delete from document where documentid = " + id);
+
                 }
-                ctx.SaveChanges();
+                else
+                {
+                    var docs = GetSessionContainer();
+                    docs.Remove(docs.First(v => v.DocumentId == id));
+                }
             }
             return Json(true);
         }
@@ -430,7 +437,7 @@ namespace V1.Controllers
             var docs = GetSessionContainer();
             var doc = docs.FirstOrDefault(p => p.DocumentId == id);
 
-            var img = new WebImage(doc.DocumentData);//.Resize(width, height, true, false);
+            var img = new WebImage(doc.DocumentData).Resize(width, height, true, false);
             return File(img.GetBytes(), "image/png");
 
 

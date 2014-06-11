@@ -41,6 +41,7 @@
           <Property Name="UserId" Type="bigint" />
           <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="SectionTypeId" Type="bigint" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SectionDocument">
           <Key>
@@ -235,7 +236,6 @@
         <EntityContainer Name="SIDEContxts" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Documents" EntityType="SIDEModel.Document" />
           <EntitySet Name="People" EntityType="SIDEModel.Person" />
-          <EntitySet Name="Sections" EntityType="SIDEModel.Section" />
           <EntitySet Name="SectionDocuments" EntityType="SIDEModel.SectionDocument" />
           <EntitySet Name="Users" EntityType="SIDEModel.User" />
           <AssociationSet Name="FK_Document_User" Association="SIDEModel.FK_Document_User">
@@ -246,16 +246,8 @@
             <End Role="Person" EntitySet="People" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_User" Association="SIDEModel.FK_Section_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Section" EntitySet="Sections" />
-          </AssociationSet>
           <EntitySet Name="LookUpMasters" EntityType="SIDEModel.LookUpMaster" />
           <EntitySet Name="SectionAttributes" EntityType="SIDEModel.SectionAttribute" />
-          <AssociationSet Name="FK_Section_SectionType" Association="SIDEModel.FK_Section_SectionType">
-            <End Role="LookUpMaster" EntitySet="LookUpMasters" />
-            <End Role="Section" EntitySet="Sections" />
-          </AssociationSet>
           <AssociationSet Name="FK_SectionAttributes_LookUpMaster" Association="SIDEModel.FK_SectionAttributes_LookUpMaster">
             <End Role="LookUpMaster" EntitySet="LookUpMasters" />
             <End Role="SectionAttribute" EntitySet="SectionAttributes" />
@@ -265,12 +257,21 @@
             <End Role="SectionAttribute" EntitySet="SectionAttributes" />
           </AssociationSet>
           <EntitySet Name="SectionAttributeValues" EntityType="SIDEModel.SectionAttributeValue" />
-          <AssociationSet Name="FK_SectionAttributeValue_Section" Association="SIDEModel.FK_SectionAttributeValue_Section">
-            <End Role="Section" EntitySet="Sections" />
-            <End Role="SectionAttributeValue" EntitySet="SectionAttributeValues" />
-          </AssociationSet>
           <AssociationSet Name="FK_SectionAttributeValue_SectionAttributes" Association="SIDEModel.FK_SectionAttributeValue_SectionAttributes">
             <End Role="SectionAttribute" EntitySet="SectionAttributes" />
+            <End Role="SectionAttributeValue" EntitySet="SectionAttributeValues" />
+          </AssociationSet>
+          <EntitySet Name="Sections" EntityType="SIDEModel.Section" />
+          <AssociationSet Name="FK_Section_SectionType" Association="SIDEModel.FK_Section_SectionType">
+            <End Role="LookUpMaster" EntitySet="LookUpMasters" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_User" Association="SIDEModel.FK_Section_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionAttributeValue_Section" Association="SIDEModel.FK_SectionAttributeValue_Section">
+            <End Role="Section" EntitySet="Sections" />
             <End Role="SectionAttributeValue" EntitySet="SectionAttributeValues" />
           </AssociationSet>
         </EntityContainer>
@@ -301,20 +302,6 @@
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Users" Relationship="SIDEModel.FK_User_Person" FromRole="Person" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Section">
-          <Key>
-            <PropertyRef Name="SectionId" />
-          </Key>
-          <Property Name="SectionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SectionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="Int64" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="SectionTypeId" Type="Int64" />
-          <NavigationProperty Name="User" Relationship="SIDEModel.FK_Section_User" FromRole="Section" ToRole="User" />
-          <NavigationProperty Name="LookUpMaster" Relationship="SIDEModel.FK_Section_SectionType" FromRole="Section" ToRole="LookUpMaster" />
-          <NavigationProperty Name="SectionAttributeValues" Relationship="SIDEModel.FK_SectionAttributeValue_Section" FromRole="Section" ToRole="SectionAttributeValue" />
         </EntityType>
         <EntityType Name="SectionDocument">
           <Key>
@@ -362,18 +349,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_User">
-          <End Type="SIDEModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="SIDEModel.Section" Role="Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="LookUpMaster">
           <Key>
             <PropertyRef Name="LookupId" />
@@ -385,9 +360,9 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="ParentId" Type="Int64" />
-          <NavigationProperty Name="Sections" Relationship="SIDEModel.FK_Section_SectionType" FromRole="LookUpMaster" ToRole="Section" />
           <NavigationProperty Name="SectionAttributes" Relationship="SIDEModel.FK_SectionAttributes_LookUpMaster" FromRole="LookUpMaster" ToRole="SectionAttribute" />
           <NavigationProperty Name="SectionAttributes1" Relationship="SIDEModel.FK_SectionAttributes_LookUpMaster1" FromRole="LookUpMaster" ToRole="SectionAttribute" />
+          <NavigationProperty Name="Sections" Relationship="SIDEModel.FK_Section_SectionType" FromRole="LookUpMaster" ToRole="Section" />
         </EntityType>
         <EntityType Name="SectionAttribute">
           <Key>
@@ -400,18 +375,6 @@
           <NavigationProperty Name="LookUpMaster1" Relationship="SIDEModel.FK_SectionAttributes_LookUpMaster1" FromRole="SectionAttribute" ToRole="LookUpMaster" />
           <NavigationProperty Name="SectionAttributeValues" Relationship="SIDEModel.FK_SectionAttributeValue_SectionAttributes" FromRole="SectionAttribute" ToRole="SectionAttributeValue" />
         </EntityType>
-        <Association Name="FK_Section_SectionType">
-          <End Type="SIDEModel.LookUpMaster" Role="LookUpMaster" Multiplicity="0..1" />
-          <End Type="SIDEModel.Section" Role="Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LookUpMaster">
-              <PropertyRef Name="LookupId" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="SectionTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SectionAttributes_LookUpMaster">
           <End Type="SIDEModel.LookUpMaster" Role="LookUpMaster" Multiplicity="1" />
           <End Type="SIDEModel.SectionAttribute" Role="SectionAttribute" Multiplicity="*" />
@@ -444,21 +407,9 @@
           <Property Name="SectionAttributeId" Type="Int64" Nullable="false" />
           <Property Name="AttributeValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SectionId" Type="Int64" />
-          <NavigationProperty Name="Section" Relationship="SIDEModel.FK_SectionAttributeValue_Section" FromRole="SectionAttributeValue" ToRole="Section" />
           <NavigationProperty Name="SectionAttribute" Relationship="SIDEModel.FK_SectionAttributeValue_SectionAttributes" FromRole="SectionAttributeValue" ToRole="SectionAttribute" />
+          <NavigationProperty Name="Section" Relationship="SIDEModel.FK_SectionAttributeValue_Section" FromRole="SectionAttributeValue" ToRole="Section" />
         </EntityType>
-        <Association Name="FK_SectionAttributeValue_Section">
-          <End Type="SIDEModel.Section" Role="Section" Multiplicity="0..1" />
-          <End Type="SIDEModel.SectionAttributeValue" Role="SectionAttributeValue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Section">
-              <PropertyRef Name="SectionId" />
-            </Principal>
-            <Dependent Role="SectionAttributeValue">
-              <PropertyRef Name="SectionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SectionAttributeValue_SectionAttributes">
           <End Type="SIDEModel.SectionAttribute" Role="SectionAttribute" Multiplicity="1" />
           <End Type="SIDEModel.SectionAttributeValue" Role="SectionAttributeValue" Multiplicity="*" />
@@ -468,6 +419,57 @@
             </Principal>
             <Dependent Role="SectionAttributeValue">
               <PropertyRef Name="SectionAttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionId" />
+          </Key>
+          <Property Name="SectionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SectionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SectionTypeId" Type="Int64" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LookUpMaster" Relationship="SIDEModel.FK_Section_SectionType" FromRole="Section" ToRole="LookUpMaster" />
+          <NavigationProperty Name="User" Relationship="SIDEModel.FK_Section_User" FromRole="Section" ToRole="User" />
+          <NavigationProperty Name="SectionAttributeValues" Relationship="SIDEModel.FK_SectionAttributeValue_Section" FromRole="Section" ToRole="SectionAttributeValue" />
+        </EntityType>
+        <Association Name="FK_Section_SectionType">
+          <End Type="SIDEModel.LookUpMaster" Role="LookUpMaster" Multiplicity="0..1" />
+          <End Type="SIDEModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUpMaster">
+              <PropertyRef Name="LookupId" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="SectionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_User">
+          <End Type="SIDEModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SIDEModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionAttributeValue_Section">
+          <End Type="SIDEModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="SIDEModel.SectionAttributeValue" Role="SectionAttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SectionId" />
+            </Principal>
+            <Dependent Role="SectionAttributeValue">
+              <PropertyRef Name="SectionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -502,18 +504,6 @@
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sections">
-            <EntityTypeMapping TypeName="SIDEModel.Section">
-              <MappingFragment StoreEntitySet="Section">
-                <ScalarProperty Name="SectionTypeId" ColumnName="SectionTypeId" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SectionDescription" ColumnName="SectionDescription" />
-                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
-                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -566,6 +556,19 @@
                 <ScalarProperty Name="AttributeValue" ColumnName="AttributeValue" />
                 <ScalarProperty Name="SectionAttributeId" ColumnName="SectionAttributeId" />
                 <ScalarProperty Name="SectionAttributeValueId" ColumnName="SectionAttributeValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="SIDEModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SectionTypeId" ColumnName="SectionTypeId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SectionDescription" ColumnName="SectionDescription" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
