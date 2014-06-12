@@ -172,12 +172,13 @@ namespace V1.Controllers
                                {
                                    FirstName = p.FirstName,
                                    LastName = p.LastName,
-                                   Email = p.Email
+                                   Email = p.Email,
+                                   UserID = v.UserId
 
                                }).FirstOrDefault();
                     if (user != null)
                     {
-                        HttpContext.Session[LoginConstants.LoginSession] = user;
+                        Helper.SetUserSession(user);
                     }
                 }
             }

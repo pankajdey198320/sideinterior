@@ -118,6 +118,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utility\Helper.cs" />
     <Content Include="App_Code\FormFields.cs" />
     <Compile Include="App_Start\AuthenticationFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MyProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +144,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\UploadHelper.cshtml" />
+    <Content Include="App_Code\ScriptHelper.cshtml" />
     <None Include="Properties\PublishProfiles\qa.pubxml" />
     <Content Include="Scripts\Common\XHRUtility.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
@@ -176,6 +179,7 @@
     <Content Include="Views\Admin\ProjectUpload.cshtml" />
     <Content Include="Views\Admin\ProjectList.cshtml" />
     <Content Include="Views\Shared\_AdminLoginLayout.cshtml" />
+    <Content Include="Views\MyProfile\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

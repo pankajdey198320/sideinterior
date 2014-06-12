@@ -12,7 +12,7 @@ namespace SideAdmin.Filters
 
             //Demo purpose only. The custom principal could be retrived via the current context.
             var xp=new MyCustomPrincipal(filterContext.HttpContext.User.Identity, new[] { "Admin" }, "Red");
-            xp.IsSessionAlive = filterContext.HttpContext.Session[LoginConstants.LoginSession] != null;
+            xp.IsSessionAlive = Helper.GetLoggedinUser() != null;
             filterContext.Principal = xp;
         }
 

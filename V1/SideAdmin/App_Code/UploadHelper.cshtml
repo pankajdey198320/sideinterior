@@ -26,7 +26,7 @@
 }
 
 
-@helper CreateForms(IEnumerable<FormFields> fields, bool asyncFileUpload, string submitControlId, string url, string successfunction)
+@helper CreateForms(IEnumerable<FormFields> fields, bool asyncFileUpload, string submitControlId, string url, string successfunction, string asyncLoadUrl = "")
 {
     var filFieldId = "";
     string misc = "";
@@ -136,6 +136,59 @@
 
             });
         </script>
+    }
+    else
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("@submitControlId").click(function () {
+
+                    @foreach (FormFields field in fields)
+                    {
+                        if (field.Type == FormFields.FieldType.Text
+                            || field.Type == FormFields.FieldType.TextArea
+                             || field.Type == FormFields.FieldType.Checkbox
+                            || field.Type == FormFields.FieldType.hidden)
+                        {
+                        misc += field.FieldId + " : "  + field.FieldFormatter.GetValueRetrivalString(field)+  ",";
+                        }
+                    }
+
+                    var dModel = {
+                        @UploadHelper.Html.Raw(misc)
+                    };
+
+                    $.fn.submitAjax( '@url',JSON.stringify( dModel), function (evt) {
+                        var percentComplete = evt.loaded / evt.total;
+                        console.log(percentComplete);
+                    }, @UploadHelper.Html.Raw( successfunction),null);
+                });
+
+            });
+            $.ajax({
+                type: "GET",
+                url: '@asyncLoadUrl',
+                contentType: "application/json",
+                processData: false,
+                success: function (jSonData) {
+                    if (jSonData != null && jSonData != undefined) {
+                        var keys = Object.keys(jSonData);
+                        for (var i = 0; i < keys.length; i++) {
+                            var selec = '#'+ keys[i] ;
+                            $(selec).val( jSonData[keys[i]]);
+                        }
+                        //formData.append("data", jSonData);
+                    }
+                },
+                error: function (error) {
+                    if (onError && typeof (onError) === "function") {
+                        onError(error);
+                    }
+                }
+            });
+
+        </script>
+
     }
 
 }

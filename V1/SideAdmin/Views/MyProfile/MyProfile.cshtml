@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top:3rem;">
+    <div class="row">
+        @{
+
+        var fileds = new List<FormFields>();
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "First Name",
+            FieldId = "FirstName",
+            PlaceholderText="John"
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "Middle Name",
+            FieldId = "MiddleName",
+            PlaceholderText="k"
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "Last Name",
+            FieldId = "LastName",
+            PlaceholderText="phi"
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "DOB",
+            FieldId = "DOB",
+            PlaceholderText = "12/31/2000"
+
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Text,
+            Caption = "Email",
+            FieldId = "Email",
+            PlaceholderText = "someone@some.com"
+        });
+        fileds.Add(new FormFields()
+        {
+            Type = FormFields.FieldType.Checkbox,
+            Caption = "Gender",
+            FieldId = "Sex"
+        });
+
+
+        }
+        @UploadHelper.CreateForms(fileds, false, "#UploadImage", Url.Action("SaveProfile", "MyProfile"), "function(){}", Url.Action("GetMyProfile", "MyProfile"))
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary" id="UploadImage" type="button">Upload!</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Common/XHRUtility.js"></script>
+}
