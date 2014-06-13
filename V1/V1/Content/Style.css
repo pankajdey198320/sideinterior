@@ -6515,3 +6515,11 @@ form.bs-docs-example {
     z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
     
   }
+
+@media all and (max-width: 690px) {
+    .Nav-responsiv {
+        background-color:black;opacity:.5;
+        padding-left:5rem !important;
+        font-size:larger;
+    }
+}

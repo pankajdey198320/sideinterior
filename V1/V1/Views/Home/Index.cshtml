@@ -1,85 +1,102 @@
 ﻿@model IEnumerable<V1.Models.ViewModel.CarouselViewModel>
 
 @{
-    Layout ="~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-    @{ 
-        Html.RenderPartial("_Carousel", Model);
-    }
-    <div class="row-fluid">
-        <div class="container-fluid UnderSlide">
-            <div class="container">
-                <div class="span12">
-                    <div class="title">From Our Projects</div>
-                </div>
+@{
+    Html.RenderPartial("_Carousel", Model);
+}
+<div class="row-fluid">
+    <div class="container-fluid UnderSlide">
+        <div class="container">
+            <div class="span12">
+                <div class="title">From Our Projects</div>
             </div>
         </div>
-        <div class="container-fluid FromBlog">
-            <div class="container">
-                <div class="span3">
-                    <div class="BlogArticle">
-                        <div class="ImgWrap"><span class="date">JAN<br><span>28</span></span><img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash3/t1.0-9/577731_367424199980674_1548975054_n.jpg" alt="" class="img-responsive"></div>
-                        <div class="WhiteTone">
-                            <a href="./blog-single.html"><span class="title">Examlple showroom</span></a>
-                            <p class="comments">
-                                <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
-                                    <span class="count">0</span>
-                                    comment
-                                </a>
-                            </p><p>
-                            </p>
-                        </div>
+    </div>
+    <div class="container-fluid FromBlog">
+        <div class="container">
+            <div class="span3">
+                <div class="BlogArticle">
+                    <div class="ImgWrap"><span class="date">JAN<br><span>28</span></span><img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash3/t1.0-9/577731_367424199980674_1548975054_n.jpg" alt="" class="img-responsive"></div>
+                    <div class="WhiteTone">
+                        <a href="./blog-single.html"><span class="title">Examlple showroom</span></a>
+                        <p class="comments">
+                            <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
+                                <span class="count">0</span>
+                                comment
+                            </a>
+                        </p><p>
+                        </p>
                     </div>
                 </div>
-                <div class="span3">
-                    <div class="BlogArticle">
-                        <div class="ImgWrap"><span class="date">JAN<br><span>23</span></span><img class="img-responsive" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/417034_293933073996454_3876203_n.jpg" alt=""></div>
-                        <div class="WhiteTone">
-                            <a href="./blog-single.html"><span class="title">Child bedroom</span></a>
-                            <p class="comments">
-                                <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
-                                    <span class="count">5</span>
-                                    comment
-                                </a>
-                            </p><p>
-                            </p>
-                        </div>
+            </div>
+            <div class="span3">
+                <div class="BlogArticle">
+                    <div class="ImgWrap"><span class="date">JAN<br><span>23</span></span><img class="img-responsive" src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/417034_293933073996454_3876203_n.jpg" alt=""></div>
+                    <div class="WhiteTone">
+                        <a href="./blog-single.html"><span class="title">Child bedroom</span></a>
+                        <p class="comments">
+                            <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
+                                <span class="count">5</span>
+                                comment
+                            </a>
+                        </p><p>
+                        </p>
                     </div>
                 </div>
-                <div class="span3">
-                    <div class="BlogArticle">
-                        <div class="ImgWrap"><span class="date">JAN<br><span>19</span></span><img class="img-responsive" src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/430439_293931847329910_1657391466_n.jpg" alt=""></div>
-                        <div class="WhiteTone">
-                            <a href="./blog-single.html"><span class="title">Child bedroom </span></a>
-                            <p class="comments">
-                                <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span>  <a href="#" class="comments">
-                                    <span class="count">9</span>
-                                    comment
-                                </a>
-                            </p><p>
-                            </p>
-                        </div>
+            </div>
+            <div class="span3">
+                <div class="BlogArticle">
+                    <div class="ImgWrap"><span class="date">JAN<br><span>19</span></span><img class="img-responsive" src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/430439_293931847329910_1657391466_n.jpg" alt=""></div>
+                    <div class="WhiteTone">
+                        <a href="./blog-single.html"><span class="title">Child bedroom </span></a>
+                        <p class="comments">
+                            <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span>  <a href="#" class="comments">
+                                <span class="count">9</span>
+                                comment
+                            </a>
+                        </p><p>
+                        </p>
                     </div>
                 </div>
-                <div class="span3">
-                    <div class="BlogArticle">
-                        <div class="ImgWrap"><span class="date">JAN<br><span>12</span></span><img class="img-responsive" src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/417515_293927040663724_726805427_n.jpg" alt=""></div>
-                        <div class="WhiteTone">
-                            <a href="./blog-single.html"><span class="title">Proin Dictum Element</span></a>
-                            <p class="comments">
-                                <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
-                                    <span class="count">15</span>
-                                    comment
-                                </a>
-                            </p><p>
-                            </p>
-                        </div>
+            </div>
+            <div class="span3">
+                <div class="BlogArticle">
+                    <div class="ImgWrap"><span class="date">JAN<br><span>12</span></span><img class="img-responsive" src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/417515_293927040663724_726805427_n.jpg" alt=""></div>
+                    <div class="WhiteTone">
+                        <a href="./blog-single.html"><span class="title">Proin Dictum Element</span></a>
+                        <p class="comments">
+                            <span class="muted">by</span> <a href="#" class="name">Admin  /</a>  <span class="muted">with</span> <a href="#" class="comments">
+                                <span class="count">15</span>
+                                comment
+                            </a>
+                        </p><p>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
+</div>
 
+
+@section scriptsMain{
+   <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#myCarousel").on("swipeleft", function () {
+            $('a.right').click();
+        });
+
+        $("#myCarousel").on("swiperight", function () {
+
+            $('a.left').click();
+        });
+    });
+</script>
+
+}
