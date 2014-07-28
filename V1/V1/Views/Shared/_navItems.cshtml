@@ -3,5 +3,5 @@
 {
     var subs = item.isSubMenu ? "data-toggle=tab" : string.Empty;
     var isAct = item.IsActive == true ? "class:'active'" : string.Empty;
-    <li @isAct><a href="@item.Url" @subs data-option-value="@item.DataOptionValue" >@item.DisplayName</a></li>
+    <li @isAct><a target="_self" href="@item.Url" @subs data-option-value="@item.DataOptionValue" >@item.DisplayName</a></li>
 }

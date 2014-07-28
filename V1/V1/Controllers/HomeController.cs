@@ -7,6 +7,7 @@ namespace V1.Controllers
 {
     using SideAdmin.Utility;
     using SideInfrastructure.Model.Edmx;
+
     public class HomeController : Controller
     {
         //
@@ -47,11 +48,11 @@ namespace V1.Controllers
         {
             if (!isSubMenu)
             {
-                return  PartialView("_navItems", GetMenu(0)); 
+                return PartialView("_navItems", GetMenu(0));
             }
             switch (controller)
             {
-               
+
                 case "About":
                     {
                         return PartialView("_navItems", GetMenu(1));
@@ -94,7 +95,7 @@ namespace V1.Controllers
                     IsActive = false
                 });
             }
-            else if(parenMenuId == 1)
+            else if (parenMenuId == 1)
             {
                 xNavs.Add(new SideInfrastructure.Model.ViewModel.NavigationViewModel()
                 {

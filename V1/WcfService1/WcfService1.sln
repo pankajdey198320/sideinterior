@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationAPI", "AuthenticationAPI\AuthenticationAPI.csproj", "{41BD9EC3-5E96-4DC8-8103-C1ED7E331E16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client1", "Client1\Client1.csproj", "{AFE0A485-BA88-4298-9298-33B0287BC37D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client2", "client2\client2.csproj", "{21FD2ED7-F564-4F28-90E0-CFD8944A2B2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41BD9EC3-5E96-4DC8-8103-C1ED7E331E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BD9EC3-5E96-4DC8-8103-C1ED7E331E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BD9EC3-5E96-4DC8-8103-C1ED7E331E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BD9EC3-5E96-4DC8-8103-C1ED7E331E16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFE0A485-BA88-4298-9298-33B0287BC37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE0A485-BA88-4298-9298-33B0287BC37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE0A485-BA88-4298-9298-33B0287BC37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE0A485-BA88-4298-9298-33B0287BC37D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FD2ED7-F564-4F28-90E0-CFD8944A2B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FD2ED7-F564-4F28-90E0-CFD8944A2B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FD2ED7-F564-4F28-90E0-CFD8944A2B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FD2ED7-F564-4F28-90E0-CFD8944A2B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

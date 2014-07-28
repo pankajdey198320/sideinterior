@@ -8,13 +8,33 @@
     <div class="row-fluid">
         @foreach (var item in Model)
         {
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <a href='@Url.Action("Project", new { id = item.Id })'>   <img src='@item.CoverImage' alt="300x200"></a>
+            if (item.Id > 0)
+            {
+                var style = "";
+                if (!item.Status) {
+                    style = "border-color: #f0ad4e;";
+                }
+                <div class="col-sm-6 col-md-3">
+                    <div>
+                        @item.Title
+                    </div>
+                    <div class="thumbnail" style='@style'>
+                        <a href='@Url.Action("Project", new { id = item.Id })'>   <img src='@item.CoverImage' alt="300x200"></a>
 
 
+                    </div>
                 </div>
-            </div>
+            }
+            else { 
+             <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        
+                        <a href='@Url.Action("Project", new { id = item.Id })'> <img src="~/Content/Img/add_page.png" /></a>
+
+
+                    </div>
+                </div>
+            }
         }
     </div>
 </div>

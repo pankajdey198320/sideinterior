@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SideInfrastructure.Model.ViewModel.ProjectViewModel>
+<div class="container-fluid FromBlog">
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+            <div class="span3">
+            <div class="BlogArticle">
+                <div class="ImgWrap"><span class="date">@item.Date.ToString("MMM", System.Globalization.CultureInfo.InvariantCulture )<br><span>@item.Date.Day</span></span><img src="@item.CoverImage" alt="@item.Title" class="img-responsive"></div>
+                <div class="WhiteTone">
+                    <a href="@Url.Action("Details","Project", new { id = item.Id })"><span class="title">@item.Title</span></a>
+                    <p class="comments">
+                        <span class="muted">by</span> <a href="#" class="name">Side  /</a>  <span class="muted">with</span> <a href="#" class="comments">
+                            <span class="count">0</span>
+                            comment
+                        </a>
+                    </p>
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+        }
+        
+        
+        
+    </div>
+</div>

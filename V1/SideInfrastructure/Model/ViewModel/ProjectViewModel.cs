@@ -31,5 +31,9 @@ namespace SideInfrastructure.Model.ViewModel
         public List<ProjectViewModel> RelatedProjects { get; set; }
 
         public bool Status { get; set; }
+
+        public DateTime Date { get; set; }
+        public int Pre { get; set; }
+        public int Next { get; set; }
     }
 }

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-1.9.1.min.js"></script>
+    <title>Analog Clock</title>
+    <script>
+        //function updateTime() { // Update the SVG clock
+        //    var now = new Date();
+        //    var sec = now.getSeconds();
+        //    var min = now.getMinutes();
+        //    var hour = (now.getHours() % 12) + min / 60;
+        //    var secangle = sec * 6;
+        //    var minangle = min * 6;
+        //    var hourangle = hour * 30;
+
+        //    // Get SVG elements for the hands of the clock
+        //    var sechand = document.getElementById('secondhand');
+        //    var minhand = document.getElementById("minutehand");
+        //    var hourhand = document.getElementById("hourhand");
+
+        //    // Set an SVG attribute on them to move them around the clock face
+        //    sechand.setAttribute("transform", "rotate(" + secangle + ",50,50)");
+        //    minhand.setAttribute("transform", "rotate(" + minangle + ",50,50)");
+        //    hourhand.setAttribute("transform", "rotate(" + hourangle + ",50,50)");
+
+        //    setTimeout(updateTime, 1000);
+        //}
+        function drawCirclePoints(theta, cx, cy, r) {
+
+
+            var x = cx + r * Math.acos(theta * Math.PI / 180);
+            var y = cy + r * Math.asin(theta * Math.PI / 180);
+
+            var cer = "<circle cx='" + x + "' cy='" + y + "' r='5' />";
+            $('#ticks').append(cer);
+        }
+
+        $(document).ready(function () {
+            drawCirclePoints(15, 50, 50, 25);
+            $('#ticks circle').click(function () {
+                alert($(this).html());
+            });
+
+        });
+    </script>
+    <style>
+        /* These CSS styles all apply to the SVG elements defined below */
+        #clock {
+            /* styles for everything in the clock */
+            stroke: black;
+            /* black lines */
+            stroke-linecap: round;
+            /* with rounded ends */
+            fill: #eef;
+            /* on a light blue gray background */
+        }
+
+        #face {
+            stroke-width: 3px;
+        }
+        /* clock face outline */
+        #ticks {
+            stroke-width: 1;
+        }
+        /* lines that mark each hour */
+        #hourhand {
+            stroke-width: 5px;
+        }
+        /* wide hour hand */
+        #minutehand {
+            stroke-width: 3px;
+        }
+        /* narrow minute hand */
+        #secondhand {
+            stroke-width: 1px;
+        }
+
+        #numbers {
+            /* how to draw the numbers */
+            font-family: sans-serif;
+            font-size: 7pt;
+            font-weight: bold;
+            text-anchor: middle;
+            stroke: none;
+            fill: black;
+        }
+    </style>
+</head>
+<body>
+    <!-- viewBox is coordinate system, width and height are on-screen size -->
+    <svg id="clock" viewBox="0 0 100 100" width="500" height="500">
+
+       <!--  <circle id="face" cx="50" cy="50" r="45" /> the clock face -->
+
+        <g id="ticks">
+            <!-- 12 hour tick marks 
+            <circle cx="50" cy="5" r="5"></circle>
+            <circle cx="72.50" cy="11.035" r="5"></circle>
+            
+            <circle cx='88.97' cy='27.50' r="5" />
+            <circle cx='95.00' cy='50.00' r="5" />
+            <circle cx='88.97' cy='72.50' r="5" />
+            <circle cx='72.50' cy='88.97' r="5" />
+            <circle cx='50.00' cy='95.00' r="5" />
+            <circle cx='27.50' cy='88.97' r="5" />
+            <circle cx='11.03' cy='72.50' r="5" />
+            <circle cx='5.000' cy='50.00' r="5" />
+            <circle cx='11.03' cy='27.50' r="5" />
+            <circle cx='27.50' cy='11.03' r="5" />
+                -->
+        </g>
+
+        <g id="numbers">
+            <!-- Number the cardinal directions-->
+            <text x="50" y="18">12</text>
+            <text x="85" y="53">3</text>
+            <text x="50" y="88">6</text>
+            <text x="15" y="53">9</text>
+        </g>
+
+        <!-- Draw hands pointing straight up. We rotate them in the code. -->
+       <!-- <g id="hands">
+           
+            <line id="hourhand" x1="50" y1="50" x2="50" y2="24" />
+            <line id="minutehand" x1="50" y1="50" x2="50" y2="20" />
+            <line id="secondhand" x1="50" y1="50" x2="50" y2="16" />
+        </g>-->
+    </svg>
+</body>
+</html>

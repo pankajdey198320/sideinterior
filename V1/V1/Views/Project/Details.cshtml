@@ -17,8 +17,8 @@
                             <li><a href='@Url.Action("Index")'>Back to The List</a></li>
                         </ul>
                         <ul class="PageNavi">
-                            <li><a href="#"><span><em></em></span><del class="text">Previous Project</del></a></li>
-                            <li><a href="#"><span><em></em></span><del class="text">Next Project</del></a></li>
+                            <li><a href='@Url.Action("Details", new { id = Model.Pre })'><span><em></em></span><del class="text">Previous Project</del></a></li>
+                            <li><a href='@Url.Action("Details", new { id = Model.Next})'><span><em></em></span><del class="text">Next Project</del></a></li>
                         </ul>
                     </div>
                 </div>

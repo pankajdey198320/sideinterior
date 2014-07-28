@@ -26,7 +26,7 @@ namespace V1.Controllers
             {
                 var doc = context.Documents.FirstOrDefault(p => p.DocumentId == id);
 
-                var img = new WebImage(doc.DocumentData).Resize(width, height, true, false);
+                var img = new WebImage(doc.DocumentData).Resize(width, height, false, false);
                 return File(img.GetBytes(), "image/png");
             }
 

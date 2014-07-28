@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <form method ="post" action='@Url.Action("Login/", new
+                 {
+                     wa = Request.QueryString["wa"],
+                     wtrealm = Request.QueryString["wtrealm"],
+                     wctx = Request.QueryString["wa"],
+                     wct = Request.QueryString["wct"],
+                 })'>
+        <div>
+            <input name="uname" type="text" />
+            <input name="pass" type="password" />
+            <input id="submit" type="submit" value="Login" />
+
+        </div>
+        </form>
+</body>
+</html>

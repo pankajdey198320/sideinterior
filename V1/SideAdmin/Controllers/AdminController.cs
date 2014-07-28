@@ -261,8 +261,15 @@ namespace V1.Controllers
                                                where k.SectionId == v.SectionId
                                                select
                                                     this.DocServerUrl + k.DocumentId
-                                              ).FirstOrDefault()
+                                              ).FirstOrDefault(),
+                                 Status = v.Status > 0
+
                              }).ToList();
+                projs.Add(new ProjectViewModel()
+                {
+                    Id = -1,
+                    Title = "New Project"
+                });
                 ResetSessionContainer();
                 return View("ProjectList", projs);
             }
