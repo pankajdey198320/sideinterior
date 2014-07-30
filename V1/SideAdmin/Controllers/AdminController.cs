@@ -268,7 +268,7 @@ namespace V1.Controllers
                 projs.Add(new ProjectViewModel()
                 {
                     Id = -1,
-                    Title = "New Project"
+                    Title = "Add New"
                 });
                 ResetSessionContainer();
                 return View("ProjectList", projs);
@@ -438,6 +438,32 @@ namespace V1.Controllers
                 }
             }
             return Json(true);
+        }
+
+        public ActionResult DeleteProject(long id)
+        {
+            using (SIDEContxts ctx = new SIDEContxts())
+            {
+                var section = (from v in ctx.Sections where v.SectionId == id select v).FirstOrDefault();
+                var sectionDoc = from v in ctx.SectionDocuments where v.SectionId == id select v;
+                var docs = from v in ctx.Documents
+                           join x in ctx.SectionDocuments on v.DocumentId equals x.DocumentId
+                           where x.SectionId == id
+                           select v;
+                var existingAttributes = (from m in ctx.SectionAttributeValues
+                                          join k in ctx.SectionAttributes
+                                              on m.SectionAttributeId equals k.SectionAttributeID
+                                          where k.SectionTypeId == (long)SectionTypes.Project
+                                          && k.AttributeId == (long)SectionAttributeTypes.ProjectCheckList
+                                          && m.SectionId == id
+                                          select m);
+                ctx.Sections.Remove(section);
+                ctx.Documents.RemoveRange(docs);
+                ctx.SectionDocuments.RemoveRange(sectionDoc);
+                ctx.SectionAttributeValues.RemoveRange(existingAttributes);
+                ctx.SaveChanges();
+            }
+            return null;
         }
         public ActionResult Thumnail(long id, int height = 150, int width = 150)
         {

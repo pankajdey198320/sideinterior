@@ -111,7 +111,8 @@ namespace V1.Controllers
                 }
 
                 model = (from v in context.Sections
-                         where v.SectionId == id
+                         where v.SectionId == id &&
+                             v.Status == (int)ComponentStatus.Active
                          select new ProjectViewModel()
                          {
                              Id = (int)v.SectionId,

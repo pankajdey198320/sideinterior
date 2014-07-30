@@ -27,6 +27,9 @@
             }
             else { 
              <div class="col-sm-6 col-md-3">
+                 <div>
+                     @item.Title
+                 </div>
                     <div class="thumbnail">
                         
                         <a href='@Url.Action("Project", new { id = item.Id })'> <img src="~/Content/Img/add_page.png" /></a>
